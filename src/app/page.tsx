@@ -154,7 +154,7 @@ export default function Page() {
           <div className="w-full flex flex-grow items-center gap-28 justify-center px-5 h-[calc(100vh-7rem)]">
             <div className="lg:w-[45%]">
               <h1 className="flex gap-2 text-3xl uppercase mb-5">
-                Hola, Soy <CustomGradientText children={'Derky'} />
+                Hola, Soy <CustomGradientText>Derky</CustomGradientText>
               </h1>
               <div className="lg:text-left text-lg font-light mb-10 leading-loose">
                 <CustomSplitText text={"Soy un desarrollador Front-end con sede en Santiago de Chile, enfocado en crear soluciones digitales que mejoren la experiencia del usuario y generen valor real para los negocios. Con experiencia en el desarrollo de interfaces personalizadas, me dedico a entregar resultados efectivos que se alineen con los objetivos y necesidades de cada proyecto."} />                
@@ -162,7 +162,7 @@ export default function Page() {
 
               <div className="flex flex-wrap gap-8 items-center mb-10">
                 <span className={`text-sm uppercase tracking-wide`}>
-                  <CustomGradientText children={'Tech Stack'} />
+                  <CustomGradientText>Tech Stack</CustomGradientText>
                 </span>
                 <ul className="flex gap-5 text-3xl border-l text-gray-600 xl:ps-6">
                   <li><FaHtml5 /></li>
@@ -185,7 +185,7 @@ export default function Page() {
         <div className="container mx-auto">            
           <div className="grid grid-cols-1 xl:grid-cols-2 items-center justify-center h-80 px-5 py-5 xl:gap-10">
             <div className="text-center xl:text-end">
-              <h3 className={`text-4xl font-thin uppercase`}>Tienes algún <br/>proyecto en mente, <br/><CustomGradientText children={'conversemos'} />!</h3>
+              <h3 className={`text-4xl font-thin uppercase`}>Tienes algún <br/>proyecto en mente, <br/><CustomGradientText>conversemos</CustomGradientText>!</h3>
             </div>
             <div className="flex justify-center xl:justify-start">
               <div className="flex items-center h-14 border border-gray-600 p-5 pr-2 rounded-full gap-1">

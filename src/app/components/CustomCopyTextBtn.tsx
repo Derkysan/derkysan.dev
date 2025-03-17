@@ -16,6 +16,10 @@ export const CustomCopyTextBtn = ({ textToCopy }: Props) => {
   const [copyText, setCopyText] = React.useState("Copiar correo");
 
   React.useEffect(() => {
+    console.log('color:', color)
+  }, [color]);
+
+  React.useEffect(() => {
     setTimeout(() => { 
       setCopyText('Copiar correo')!
     }, 1000);

@@ -5,7 +5,7 @@ import React from "react";
 import Image from "next/image";
 
 import { useTheme } from "next-themes";
-import { SanLogo, SanLogoBlack } from "../../../public";
+// import { SanLogo, SanLogoBlack } from "../../../public";
 
 
 export const CustomLogo = () => {

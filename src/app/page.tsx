@@ -157,7 +157,7 @@ export default function Page() {
                 Hola, Soy <CustomGradientText>Derky</CustomGradientText>
               </h1>
               <div className="lg:text-left text-lg font-light mb-10 leading-loose">
-                <CustomSplitText text={"Desarrollador Front-end, actualmente en Santiago de Chile, enfocado en crear soluciones digitales que mejoren la experiencia del usuario y generen valor real para los negocios. Con experiencia en el desarrollo de interfaces personalizadas, me dedico a entregar resultados efectivos que se alineen con los objetivos y necesidades de cada proyecto."} />                
+                <CustomSplitText text={"Desarrollador de software especializado en tecnologías frontend y backend. Con experiencia en React, TypeScript y frameworks modernos, desarrollo aplicaciones web escalables y de alto rendimiento, centradas en ofrecer experiencias de usuario fluidas y soluciones backend robustas."} />
               </div>
 
               <div className="flex flex-wrap gap-8 items-center mb-10">

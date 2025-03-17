@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 
 const useTheme = () => {
-  const [theme, setTheme] = useState<'light' | 'dark'>('light');
+  const [theme, setTheme] = useState<'light' | 'dark'>('dark');
 
   useEffect(() => {
     // Detecta la preferencia de tema del usuario

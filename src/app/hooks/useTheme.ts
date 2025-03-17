@@ -10,10 +10,8 @@ const useTheme = () => {
     // Si ya hay un tema guardado en localStorage, usa ese tema
     const savedTheme = localStorage.getItem('theme') as 'light' | 'dark' | null;
 
-    // Si no hay tema guardado, usa el preferido por el sistema
-    setTheme(savedTheme || 'dark');
-
-    console.log('systemTheme:', systemTheme)
+    // Establece el tema inicial basado en lo guardado o en la preferencia del sistema
+    setTheme(savedTheme || systemTheme);
 
   }, []);
 

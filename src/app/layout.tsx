@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     title: "Derkysan | Software Developer",
     description: "Desarrollador de software especializado en tecnologías frontend y backend. Con experiencia en React, TypeScript y frameworks modernos, desarrollo aplicaciones web escalables y de alto rendimiento, centradas en ofrecer experiencias de usuario fluidas y soluciones backend robustas.",
     url: "https://www.derkysan.dev",
-    siteName: "PemjeanLuces",
+    siteName: "derkysan.dev",
     images: [
       {
         url: "https://www.derkysan.dev/opengraph-image.png", // Ruta absoluta de la imagen

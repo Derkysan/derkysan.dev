@@ -49,7 +49,7 @@ export default function Page() {
   const { theme, setTheme } = useTheme();
 
   React.useEffect(() => {
-    setTheme('dark')
+    setTheme('dark');
   }, []);
 
   const handleTheme = () => {

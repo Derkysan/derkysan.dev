@@ -48,6 +48,10 @@ export default function Page() {
   const [isContactOpen, setisContactOpen] = React.useState<boolean>(false);
   const { theme, setTheme } = useTheme();
 
+  React.useEffect(() => {
+    setTheme('dark')
+  }, []);
+
   const handleTheme = () => {
     if (theme === 'light') {
       setTheme('dark');

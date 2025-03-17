@@ -11,7 +11,7 @@ const useTheme = () => {
     const savedTheme = localStorage.getItem('theme') as 'light' | 'dark' | null;
 
     // Si no hay tema guardado, usa el preferido por el sistema
-    setTheme(savedTheme || systemTheme);
+    setTheme(savedTheme || 'dark');
 
     console.log('systemTheme:', systemTheme)
 

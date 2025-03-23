@@ -28,11 +28,11 @@ export default function Page() {
     setTheme('light');
   }
 
-  const [isClient, setIsClient] = React.useState(false);
+  // const [isClient, setIsClient] = React.useState(false);
   
-  React.useEffect(() => {
-      setIsClient(true); // Establece el estado después de que se haya renderizado en el cliente
-    }, []);
+  // React.useEffect(() => {
+  //     setIsClient(true); // Establece el estado después de que se haya renderizado en el cliente
+  //   }, []);
   
   // if (!isClient) return <div className="w-screen h-screen flex flex-1 items-center justify-center">Loading...*</div>;
   // if (!isClient) return (

@@ -3,13 +3,7 @@ import "./globals.css";
 
 import { Nunito, Titillium_Web } from 'next/font/google'
 
-import { TooltipProvider } from "@/components/ui/tooltip"
-
-import { ThemeProvider } from "../providers/theme-provider";
-import { Toaster } from "@/components/ui/toaster";
 import { Providers } from "@/providers";
-
-// import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
 const nunito = Nunito({
   subsets: ['latin'],

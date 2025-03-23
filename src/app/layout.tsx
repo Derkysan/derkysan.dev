@@ -5,7 +5,11 @@ import { Nunito, Titillium_Web } from 'next/font/google'
 
 import { TooltipProvider } from "@/components/ui/tooltip"
 
-import { ThemeProvider } from "./provider/theme-provider";
+import { ThemeProvider } from "../providers/theme-provider";
+import { Toaster } from "@/components/ui/toaster";
+import { Providers } from "@/providers";
+
+// import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
 const nunito = Nunito({
   subsets: ['latin'],
@@ -49,21 +53,13 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  
   return (
     <html lang="en" suppressHydrationWarning>
-      <body
-        className={`${nunito.className} ${titilum.className} antialiased`}
-      >
-        <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
-            <TooltipProvider>          
-              {children}
-            </TooltipProvider>
-          </ThemeProvider>  
+      <body className={`${nunito.className} ${titilum.className} antialiased`}>
+        <Providers>
+          {children}
+        </Providers>
       </body>
     </html>
   );

@@ -3,33 +3,7 @@
 import React from "react";
 import { useTheme } from "next-themes";
 
-import { CustomContact, CustomCopyTextBtn, CustomGradientText, CustomLogo, CustomSplitText } from "./components";
-
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-import { z } from "zod"
-
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-} from "@/components/ui/alert-dialog"
-
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form"
-import { Input } from "@/components/ui/input"
+import { CustomContact, CustomContactDialog, CustomCopyTextBtn, CustomGradientText, CustomLogo, CustomSplitText } from "@/components/shared";
 
 import { FiGithub } from "react-icons/fi";
 import { CgDarkMode } from "react-icons/cg";
@@ -38,14 +12,8 @@ import { FaLinkedinIn } from "react-icons/fa";
 
 import { FaHtml5, FaCss3Alt, FaJs, FaReact, FaAngular, FaWordpressSimple } from "react-icons/fa6";
 
-const formSchema = z.object({
-  username: z.string().min(2, {
-    message: "Username must be at least 2 characters.",
-  }),
-})
-
 export default function Page() {
-  const [isContactOpen, setisContactOpen] = React.useState<boolean>(false);
+  const [isContactOpen, setIsContactOpen] = React.useState<boolean>(false);
   const { theme, setTheme } = useTheme();
 
   React.useEffect(() => {
@@ -60,74 +28,28 @@ export default function Page() {
     setTheme('light');
   }
 
-  // 1. Define your form.
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      username: "",
-    },
-  })
-
-  // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values)
-  }
-  
-
-  React.useEffect(() => {
-    console.log('isContactOpen:', isContactOpen)
-  }, [isContactOpen]);
-
   const [isClient, setIsClient] = React.useState(false);
   
   React.useEffect(() => {
       setIsClient(true); // Establece el estado después de que se haya renderizado en el cliente
     }, []);
   
-  if (!isClient) return <div className="w-screen h-screen flex flex-1 items-center justify-center">Loading...</div>;
+  // if (!isClient) return <div className="w-screen h-screen flex flex-1 items-center justify-center">Loading...*</div>;
+  // if (!isClient) return (
+  //   <div className="w-screen h-screen flex items-center justify-center">
+  //     <svg className="animate-spin h-10 w-10 text-orange-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+  //       <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+  //       <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z" />
+  //     </svg>
+  //   </div>
+  // );
+  
 
   return (
     <div className="w-full h-screen flex flex-col ">
 
-      <AlertDialog open={isContactOpen} onOpenChange={setisContactOpen}>
-        <AlertDialogContent>
-          <AlertDialogHeader>
-            <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
-            <AlertDialogDescription>
-              This action cannot be undone. This will permanently delete your
-              account and remove your data from our servers.
-
-              <Form {...form}>
-                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-                  <FormField
-                    control={form.control}
-                    name="username"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Username</FormLabel>
-                        <FormControl>
-                          <Input placeholder="shadcn" {...field} />
-                        </FormControl>
-                        <FormDescription>
-                          This is your public display name.
-                        </FormDescription>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  {/* <Button type="submit">Submit</Button> */}
-                </form>
-              </Form>
-            </AlertDialogDescription>
-          </AlertDialogHeader>
-          <AlertDialogFooter>
-            <AlertDialogCancel>Cancel</AlertDialogCancel>
-            <AlertDialogAction>Continue</AlertDialogAction>
-          </AlertDialogFooter>
-        </AlertDialogContent>
-      </AlertDialog>
+      {/* CONTACT DIALOG */}
+      <CustomContactDialog isContactOpen={isContactOpen} setIsContactOpen={setIsContactOpen} />
 
       <div className="">
         <div className="container mx-auto">    
@@ -192,10 +114,10 @@ export default function Page() {
               <h3 className={`text-4xl font-thin uppercase`}>Tienes algún <br/>proyecto en mente, <br/><CustomGradientText>conversemos</CustomGradientText>!</h3>
             </div>
             <div className="flex justify-center xl:justify-start">
-              <div className="flex items-center h-14 border border-gray-600 p-5 pr-2 rounded-full gap-1">
+              <div className="flex items-center h-14 border-2 border-gray-600 p-5 pr-2 rounded-full gap-1">
                 <span className="dark:text-gray-400 text-lg mr-10">derkysan19@gmail.com</span>
                 <CustomCopyTextBtn textToCopy="derkysan19@gmail.com" />
-                <CustomContact onClick={() => setisContactOpen(true)} />
+                <CustomContact onClick={() => setIsContactOpen(true)} />
               </div>
             </div>
           </div>

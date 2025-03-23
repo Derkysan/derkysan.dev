@@ -24,6 +24,20 @@ body {
     --primary-foreground: 0 0% 98%;
     --secondary: 0 0% 96.1%;
     --secondary-foreground: 0 0% 9%;
+
+    /* Success Colors */
+    --success: 140 65% 45%; /* Greenish hue */
+    --success-foreground: 140 10% 95%; /* Light for text on success background */
+
+    /* Warning Colors */
+    --warning: 50 100% 50%; /* Yellowish hue */
+    --warning-foreground: 50 15% 20%; /* Darker for text on warning background */
+    
+    /* san Colors */
+    --san_primary: 30 100% 50%;
+    --san_primary-foreground: 30 100% 20%;
+
+
     --muted: 0 0% 96.1%;
     --muted-foreground: 0 0% 45.1%;
     --accent: 0 0% 96.1%;
@@ -52,6 +66,19 @@ body {
     --primary-foreground: 0 0% 9%;
     --secondary: 0 0% 14.9%;
     --secondary-foreground: 0 0% 98%;
+
+    /* Success Colors */
+    --success: 140 65% 45%; /* Greenish hue */
+    --success-foreground: 140 10% 95%; /* Light for text on success background */
+
+    /* Warning Colors */
+    --warning: 50 100% 50%; /* Yellowish hue */
+    --warning-foreground: 50 15% 20%; /* Darker for text on warning background */
+    
+    /* san Colors */
+    --san_primary: 30 100% 50%;
+    --san_primary-foreground: 30 100% 20%;
+
     --muted: 0 0% 14.9%;
     --muted-foreground: 0 0% 63.9%;
     --accent: 0 0% 14.9%;
@@ -87,6 +114,16 @@ body {
   background: -webkit-linear-gradient(#081ef6, #ce112c);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+.border-gradient {
+  border: 1px solid transparent; /* Definir el grosor y hacer el borde transparente */
+  border-image: linear-gradient(45deg, #F9B000, #F07D00) 1; /* Definir el gradiente y el borde */
+}
+.text-primary-light {
+  color: #F9B000;
+}
+.text-primary-dark {
+  color: #F07D00;
 }
 
 /* Agregar la fuente Nunito */

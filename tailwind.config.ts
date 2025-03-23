@@ -49,7 +49,21 @@ const config: Config = {
   				'3': 'hsl(var(--chart-3))',
   				'4': 'hsl(var(--chart-4))',
   				'5': 'hsl(var(--chart-5))'
-  			}
+  			},
+        success: {
+          DEFAULT: "hsl(var(--success))",
+          foreground: "hsl(var(--success-foreground))",
+        },
+        warning: {
+          DEFAULT: "hsl(var(--warning))",
+          foreground: "hsl(var(--warning-foreground))",
+        },
+        san_primary: {
+          DEFAULT: "hsl(var(--warning))",
+          foreground: "hsl(var(--warning-foreground))",
+        },
+        'gradient-start': '#F9B000',  // Primer color del gradiente
+        'gradient-end': '#F07D00',    // Segundo color del gradiente
   		},
   		borderRadius: {
   			lg: 'var(--radius)',
@@ -58,6 +72,17 @@ const config: Config = {
   		}
   	}
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [
+    function ({ addComponents }: any) {
+      addComponents({
+        '.text-gradient-light': {
+          background: 'linear-gradient(to right, #F9B000, #F07D00)',
+          '-webkit-background-clip': 'text',
+          '-webkit-text-fill-color': 'transparent',
+        },
+      });
+    },
+    require("tailwindcss-animate"),
+  ],
 };
 export default config;

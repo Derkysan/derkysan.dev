@@ -5,6 +5,8 @@ import { Nunito, Titillium_Web } from 'next/font/google'
 
 import { Providers } from "@/providers";
 
+import { SpeedInsights } from "@vercel/speed-insights/next"
+
 const nunito = Nunito({
   subsets: ['latin'],
   display: 'swap',
@@ -53,6 +55,7 @@ export default function RootLayout({
       <body className={`${nunito.className} ${titilum.className} antialiased`}>
         <Providers>
           {children}
+          <SpeedInsights />
         </Providers>
       </body>
     </html>

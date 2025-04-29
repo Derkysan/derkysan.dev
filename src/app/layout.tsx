@@ -6,6 +6,7 @@ import { Nunito, Titillium_Web } from 'next/font/google'
 import { Providers } from "@/providers";
 
 import { SpeedInsights } from "@vercel/speed-insights/next"
+import { GoogleAnalytics } from "@/components/shared";
 
 const nunito = Nunito({
   subsets: ['latin'],
@@ -57,6 +58,8 @@ export default function RootLayout({
           {children}
           <SpeedInsights />
         </Providers>
+        
+        <GoogleAnalytics />
       </body>
     </html>
   );

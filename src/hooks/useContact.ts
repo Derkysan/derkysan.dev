@@ -22,7 +22,7 @@ export const useContact = () => {
       toast({
         variant: 'primary',
         title: "Mensaje recibido",
-        description: "Gracias por contactarnos. Revisaremos su mensaje y le responderemos lo antes posible.",
+        description: "Gracias por tu mensaje. Lo revisaré personalmente y te responderé lo antes posible.",
         duration: 3500
       });
     },

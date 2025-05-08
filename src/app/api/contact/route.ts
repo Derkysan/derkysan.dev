@@ -1,6 +1,6 @@
 import sgMail from '@sendgrid/mail';
 
-sgMail.setApiKey(process.env.SENDGRID_APIKEY!);
+sgMail.setApiKey(process.env.NEXT_PUBLIC_SENDGRID_APIKEY!);
 
 export async function POST(request: Request) {
   try {
@@ -60,7 +60,7 @@ export async function POST(request: Request) {
       </head>
       <body>
         <div class="container">
-          <img src="http://blog.pemjeanluces.com/wp-content/uploads/2025/03/san-logo.png" clas="logo" alt="san" class="logo">
+          <img src="https://blog.pemjeanluces.com/wp-content/uploads/2025/03/san-logo.png" clas="logo" alt="san" class="logo">
           <h2 style="padding-left: 10px">Nuevo Contacto</h2>
           <div class="info"><strong>Nombre:</strong> ${name}</div>
           <div class="info"><strong>Correo Electrónico:</strong> <a href="mailto:${email}">${email}</a></div>

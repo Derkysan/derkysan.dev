@@ -61,7 +61,7 @@ export default function Page() {
               <div className="flex items-center gap-5 text-xs tracking-widest">
                 <a href="https://www.linkedin.com/in/derkysan/" target="_blank" className="cursor-pointer text-gray-600 dark:text-gray-200 hover:text-black dark:hover:text-white transition-all duration-300 ease-in-out transform hover:scale-110">LinkedIn</a>
                 <span>/</span>
-                <a href="https://github.com/Derkysan" target="_blank"  className="cursor-pointer text-gray-600 dark:text-gray-200 hover:text-black dark:hover:text-white transition-all duration-300 ease-in-out transform hover:scale-110">Github</a>
+                <a href="https://github.com/Derkysan" target="_blank" className="cursor-pointer text-gray-600 dark:text-gray-200 hover:text-black dark:hover:text-white transition-all duration-300 ease-in-out transform hover:scale-110">Github</a>
               </div>
               
               <div className="bg-dark z-10 right-5 top-5 flex gap-2">
@@ -130,12 +130,12 @@ export default function Page() {
               <span className="text-xs text-gray-600 dark:text-gray-400 italic">© {new Date().getFullYear()} All rights reserved.</span>
 
               <div className="flex items-center gap-6 text-gray-600">
-                <button className="flex items-center justify-center hover:border-2 w-8 h-8 rounded-full text-gray-500 hover:border-[#0a66c2] hover:text-[#0a66c2] transition-all duration-300 ease-in-out transform hover:scale-125 text-sm">
+                <a href="https://www.linkedin.com/in/derkysan/" target="_blank" className="flex items-center justify-center hover:border-2 w-8 h-8 rounded-full text-gray-500 hover:border-[#0a66c2] hover:text-[#0a66c2] transition-all duration-300 ease-in-out transform hover:scale-125 text-sm"                  >
                   <FaLinkedinIn />
-                </button>
-                <button className="flex items-center justify-center hover:border-2 w-8 h-8 rounded-full text-gray-500 hover:border-[#6e5494] hover:text-[#6e5494] transition-all duration-300 ease-in-out transform hover:scale-125 text-sm">
+                </a>
+                <a href="https://github.com/Derkysan" target="_blank" className="flex items-center justify-center hover:border-2 w-8 h-8 rounded-full text-gray-500 hover:border-[#6e5494] hover:text-[#6e5494] transition-all duration-300 ease-in-out transform hover:scale-125 text-sm">
                   <FiGithub />
-                </button>
+                </a>
               </div>
             </div>         
         </div>

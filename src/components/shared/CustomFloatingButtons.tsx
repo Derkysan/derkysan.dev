@@ -1,7 +1,6 @@
 'use client'
 
 import React from "react";
-import { useTheme } from "next-themes";
 import { FaLinkedinIn } from "react-icons/fa";
 import { FiGithub } from "react-icons/fi";
 import { CgDarkMode } from "react-icons/cg";
@@ -13,7 +12,7 @@ interface Props {
   handleTheme: () => void;
 }
 
-export const CustomFloatingButtons = ({ isContactOpen, setIsContactOpen, handleTheme }: Props) => {
+export const CustomFloatingButtons = ({ setIsContactOpen, handleTheme }: Props) => {
   const [isClient, setIsClient] = React.useState(false);
 
   React.useEffect(() => {

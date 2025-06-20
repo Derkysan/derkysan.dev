@@ -45,11 +45,6 @@ export default function Page() {
 
   return (
     <div className="w-full h-svh flex flex-col relative">
-      {/* <div className="absolute w-full h-full z-0">
-        <div className="bg-slider absolute w-full h-full opacity-5"></div>
-        <div className="w-full h-1/2 bottom-0 gradient-overlay absolute border-red-500"></div>
-      </div> */}
-
       {/* CONTACT DIALOG */}
       <CustomContactDialog isContactOpen={isContactOpen} setIsContactOpen={setIsContactOpen} />
 
@@ -61,19 +56,6 @@ export default function Page() {
       />
 
       {/* FLOATING THEME TOGGLE BUTTON */}
-
-      {/* <div className="relative z-10">
-        <div className="container mx-auto">    
-          <div className="flex items-center justify-center h-28 px-5">
-            <div className="flex items-center gap-5 text-xs tracking-widest">
-              <a href="https://www.linkedin.com/in/derkysan/" target="_blank" className="cursor-pointer text-gray-600 dark:text-gray-200 hover:text-black dark:hover:text-white transition-all duration-300 ease-in-out transform hover:scale-110">LinkedIn</a>
-              <span>/</span>
-              <a href="https://github.com/Derkysan" target="_blank" className="cursor-pointer text-gray-600 dark:text-gray-200 hover:text-black dark:hover:text-white transition-all duration-300 ease-in-out transform hover:scale-110">Github</a>
-            </div>
-          </div>
-        </div>
-      </div>     */}
-
       <div className="flex flex-grow relative z-10">
         <div className="flex flex-col container mx-auto">
           {/* [calc(100vh-7rem)] */}
@@ -91,7 +73,7 @@ export default function Page() {
                 <span className={`flex items-center text-sm uppercase tracking-wide`}>
                   <CustomGradientText>Tech Stack</CustomGradientText>
                 </span>
-                <div className="border-l border-gray-600"></div>
+                <div className="border-l border-gray-600 hidden md:flex"></div>
                 <CustomTechStack />
               </div>
             {/* <div className="border">Contactar</div> */}

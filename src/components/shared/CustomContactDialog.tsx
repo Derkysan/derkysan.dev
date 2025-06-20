@@ -1,6 +1,7 @@
 'use client'
 
 import React from "react";
+import { useTheme } from "next-themes";
 
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
@@ -33,6 +34,7 @@ export const CustomContactDialog = ({
 }: Props) => {
 
   const { sendContactMutation } = useContact();
+  const { theme } = useTheme();
 
   // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
@@ -65,14 +67,12 @@ export const CustomContactDialog = ({
       <AlertDialogContent>
         <AlertDialogHeader>
           <AlertDialogTitle className={`text-4xl font-thin uppercase`}>
-            <span className={`text-4xl font-thin uppercase`}>Tienes algo en mente <br/><CustomGradientText>conversemos</CustomGradientText></span>
-          {/* <CustomGradientText>¡Hablemos!</CustomGradientText><br/> y demos el primer paso. */}
-          {/* Tienes algún <br/>proyecto en mente, <br/><CustomGradientText>conversemos</CustomGradientText>! */}
+            <span className={`text-4xl font-thin uppercase`}>Tienes algo en mente <CustomGradientText>conversemos</CustomGradientText></span>
           </AlertDialogTitle>
           <AlertDialogDescription>Completa el formulario y conversemos.</AlertDialogDescription>
         </AlertDialogHeader>
 
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 py-3">
           <Form {...form}>
               <FormField
                 control={form.control}
@@ -128,7 +128,7 @@ export const CustomContactDialog = ({
                       <Textarea
                         placeholder="Mensaje..."
                         className="resize-none"
-                        rows={8}
+                        rows={4}
                         {...field}
                       />
                     </FormControl>
@@ -141,8 +141,21 @@ export const CustomContactDialog = ({
           </Form>
 
           <AlertDialogFooter>
-            <AlertDialogCancel onClick={() => form.reset()}>Cancel</AlertDialogCancel>
-            <Button type="submit">{sendContactMutation.isPending ? 'Enviando' : 'Enviar'}</Button>
+            <AlertDialogCancel className="hover:bg-gray-100" onClick={() => form.reset()}>Cancel</AlertDialogCancel>
+            <button
+              type="submit"
+              className={`
+                px-4 rounded-md text-sm
+                ${theme === 'dark'
+                  ? 'border-gradient bg-transparent text-gradient-light hover:bg-gradient-to-r hover:from-orange-500/10 hover:to-orange-600/10'
+                  : 'border border-[#bfbfbf] text-gray-700 hover:bg-gray-200'
+                }
+                disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none
+              `}
+              disabled={sendContactMutation.isPending}
+            >
+              {sendContactMutation.isPending ? 'Enviando...' : 'Enviar'}
+            </button>
           </AlertDialogFooter>
         </form>
       </AlertDialogContent>

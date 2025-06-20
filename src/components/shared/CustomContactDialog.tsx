@@ -13,7 +13,6 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { CustomGradientText } from "./CustomGradientText";
-import { Button } from "@/components/ui/button";
 import { useContact } from "@/hooks";
 
 const formSchema = z.object({
@@ -141,7 +140,7 @@ export const CustomContactDialog = ({
           </Form>
 
           <AlertDialogFooter>
-            <AlertDialogCancel className="hover:bg-gray-100" onClick={() => form.reset()}>Cancel</AlertDialogCancel>
+            <AlertDialogCancel className="hover:bg-gray-100apl" onClick={() => form.reset()}>Cancel</AlertDialogCancel>
             <button
               type="submit"
               className={`

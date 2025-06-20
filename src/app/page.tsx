@@ -44,7 +44,7 @@ export default function Page() {
   
 
   return (
-    <div className="w-full h-screen flex flex-col relative">
+    <div className="w-full h-svh flex flex-col relative">
       {/* <div className="absolute w-full h-full z-0">
         <div className="bg-slider absolute w-full h-full opacity-5"></div>
         <div className="w-full h-1/2 bottom-0 gradient-overlay absolute border-red-500"></div>
@@ -77,7 +77,7 @@ export default function Page() {
       <div className="flex flex-grow relative z-10">
         <div className="flex flex-col container mx-auto">
           {/* [calc(100vh-7rem)] */}
-          <div className="w-full flex flex-grow items-center gap-28 justify-center px-5 h-screen">
+          <div className="w-full flex flex-grow items-center gap-28 justify-center px-5 h-full">
             <div className="lg:w-[45%]">
               <div className="mb-8 flex justify-start">
                 <CustomLogo />

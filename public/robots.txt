@@ -1,0 +1,8 @@
+User-agent: *
+Disallow: /_next/static/media/
+
+# Allow all other content
+Allow: /
+
+# Sitemap location (optional - add when you have a sitemap)
+# Sitemap: https://derkysan.dev/sitemap.xml

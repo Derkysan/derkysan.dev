@@ -19,8 +19,19 @@ export const CustomSplitText = ({ text }: { text: string }) => {
   }, []);
   
   if (!isClient) return (
-    <div className="flex flex-col gap-4">
-      {Array.from({ length: 6 }).map((line, i) => <Skeleton key={i} className="w-full h-4 rounded" />)}
+    <div className="flex flex-col gap-2">
+      {Array.from({ length: 5 }).map((line, i) => (
+        <Skeleton
+          key={i}
+          className={`h-[18px] rounded ${
+            i === 0 ? 'w-full' :
+            i === 1 ? 'w-[95%]' :
+            i === 2 ? 'w-full' :
+            i === 3 ? 'w-[90%]' :
+            'w-[75%]'
+          }`}
+        />
+      ))}
     </div>
   );
 

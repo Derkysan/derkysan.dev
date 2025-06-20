@@ -65,7 +65,8 @@ export const CustomContactDialog = ({
       <AlertDialogContent>
         <AlertDialogHeader>
           <AlertDialogTitle className={`text-4xl font-thin uppercase`}>
-          <CustomGradientText>¡Hablemos!</CustomGradientText><br/> y demos el primer paso.
+            <h3 className={`text-4xl font-thin uppercase`}>Tienes algo en mente <br/><CustomGradientText>conversemos</CustomGradientText></h3>
+          {/* <CustomGradientText>¡Hablemos!</CustomGradientText><br/> y demos el primer paso. */}
           {/* Tienes algún <br/>proyecto en mente, <br/><CustomGradientText>conversemos</CustomGradientText>! */}
           </AlertDialogTitle>
           <AlertDialogDescription>Completa el formulario y conversemos.</AlertDialogDescription>

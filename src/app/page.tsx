@@ -3,14 +3,12 @@
 import React from "react";
 import { useTheme } from "next-themes";
 
-import { CustomContact, CustomContactDialog, CustomCopyTextBtn, CustomGradientText, CustomLogo, CustomSplitText } from "@/components/shared";
+import { CustomContact, CustomContactDialog, CustomCopyTextBtn, CustomFloatingButtons, CustomGradientText, CustomHeroTitle, CustomLogo, CustomSplitText, CustomTechStack } from "@/components/shared";
 
 import { FiGithub } from "react-icons/fi";
-import { CgDarkMode } from "react-icons/cg";
-import { SiNestjs } from "react-icons/si";
 import { FaLinkedinIn } from "react-icons/fa";
 
-import { FaHtml5, FaCss3Alt, FaJs, FaReact, FaAngular, FaWordpressSimple } from "react-icons/fa6";
+
 
 export default function Page() {
   const [isContactOpen, setIsContactOpen] = React.useState<boolean>(false);
@@ -46,59 +44,55 @@ export default function Page() {
   
 
   return (
-    <div className="w-full h-screen flex flex-col ">
+    <div className="w-full h-screen flex flex-col relative">
+      {/* <div className="absolute w-full h-full z-0">
+        <div className="bg-slider absolute w-full h-full opacity-5"></div>
+        <div className="w-full h-1/2 bottom-0 gradient-overlay absolute border-red-500"></div>
+      </div> */}
 
       {/* CONTACT DIALOG */}
       <CustomContactDialog isContactOpen={isContactOpen} setIsContactOpen={setIsContactOpen} />
 
-      <div className="">
+      {/* FLOATING BUTTONS */}
+      <CustomFloatingButtons
+        isContactOpen={isContactOpen}
+        setIsContactOpen={setIsContactOpen}
+        handleTheme={handleTheme}
+      />
+
+      {/* FLOATING THEME TOGGLE BUTTON */}
+
+      {/* <div className="relative z-10">
         <div className="container mx-auto">    
-          <div className="flex items-center justify-between h-28 px-5">
-            <span>
-              <CustomLogo />
-            </span>
-            <div className="flex gap-10">
-              <div className="flex items-center gap-5 text-xs tracking-widest">
-                <a href="https://www.linkedin.com/in/derkysan/" target="_blank" className="cursor-pointer text-gray-600 dark:text-gray-200 hover:text-black dark:hover:text-white transition-all duration-300 ease-in-out transform hover:scale-110">LinkedIn</a>
-                <span>/</span>
-                <a href="https://github.com/Derkysan" target="_blank" className="cursor-pointer text-gray-600 dark:text-gray-200 hover:text-black dark:hover:text-white transition-all duration-300 ease-in-out transform hover:scale-110">Github</a>
-              </div>
-              
-              <div className="bg-dark z-10 right-5 top-5 flex gap-2">
-                <button onClick={handleTheme} className={`flex items-center justify-center text-lg p-2 rounded-full transition-all duration-300 ease-in-out transform hover:scale-110`}>
-                  <CgDarkMode />
-                </button>
-              </div>
+          <div className="flex items-center justify-center h-28 px-5">
+            <div className="flex items-center gap-5 text-xs tracking-widest">
+              <a href="https://www.linkedin.com/in/derkysan/" target="_blank" className="cursor-pointer text-gray-600 dark:text-gray-200 hover:text-black dark:hover:text-white transition-all duration-300 ease-in-out transform hover:scale-110">LinkedIn</a>
+              <span>/</span>
+              <a href="https://github.com/Derkysan" target="_blank" className="cursor-pointer text-gray-600 dark:text-gray-200 hover:text-black dark:hover:text-white transition-all duration-300 ease-in-out transform hover:scale-110">Github</a>
             </div>
-            
           </div>
         </div>
-        {/* <div className="w-full h-[0.5px] border-none bg-gradient-to-r from-[#f8af00]/20 to-[#ee7d00]/40"></div> */}
-      </div>      
-      <div className="flex flex-grow">        
+      </div>     */}
+
+      <div className="flex flex-grow relative z-10">
         <div className="flex flex-col container mx-auto">
-          <div className="w-full flex flex-grow items-center gap-28 justify-center px-5 h-[calc(100vh-7rem)]">
+          {/* [calc(100vh-7rem)] */}
+          <div className="w-full flex flex-grow items-center gap-28 justify-center px-5 h-screen">
             <div className="lg:w-[45%]">
-              <h1 className="flex gap-2 text-3xl uppercase mb-5">
-                Hola, Soy <CustomGradientText>Derky</CustomGradientText>
-              </h1>
+              <div className="mb-8 flex justify-start">
+                <CustomLogo />
+              </div>
+              <CustomHeroTitle />
               <div className="lg:text-left text-lg font-light mb-10 leading-loose">
                 <CustomSplitText text={"Desarrollador de software especializado en tecnologías frontend y backend. Con experiencia en React, TypeScript y frameworks modernos, desarrollo aplicaciones web escalables y de alto rendimiento, centradas en ofrecer experiencias de usuario fluidas y soluciones backend robustas."} />
               </div>
 
-              <div className="flex flex-wrap gap-8 items-center mb-10">
-                <span className={`text-sm uppercase tracking-wide`}>
+              <div className="flex flex-wrap gap-4 items-stretch mb-10">
+                <span className={`flex items-center text-sm uppercase tracking-wide`}>
                   <CustomGradientText>Tech Stack</CustomGradientText>
                 </span>
-                <ul className="flex gap-5 text-3xl border-l text-gray-600 xl:ps-6">
-                  <li><FaHtml5 /></li>
-                  <li><FaCss3Alt /></li>
-                  <li><FaJs /></li>
-                  <li><FaReact /></li>
-                  <li><FaAngular /></li>
-                  <li><FaWordpressSimple /></li>
-                  <li><SiNestjs /></li>
-                </ul>
+                <div className="border-l border-gray-600"></div>
+                <CustomTechStack />
               </div>
             {/* <div className="border">Contactar</div> */}
             </div>
@@ -107,7 +101,7 @@ export default function Page() {
         </div>
       </div>
 
-      <div className="">
+      <div className="hidden">
         <div className="container mx-auto">            
           <div className="grid grid-cols-1 xl:grid-cols-2 items-center justify-center h-80 px-5 py-5 xl:gap-10">
             <div className="text-center xl:text-end">
@@ -124,13 +118,13 @@ export default function Page() {
         </div>
       </div>
 
-      <div className="border-gray-400 dark:border-gray-700 border-t">
+      <div className="border-gray-400 dark:border-gray-700 border-t hidden">
           <div className="container mx-auto">   
             <div className="flex items-center justify-between h-28 px-5">
               <span className="text-xs text-gray-600 dark:text-gray-400 italic">© {new Date().getFullYear()} All rights reserved.</span>
 
               <div className="flex items-center gap-6 text-gray-600">
-                <a href="https://www.linkedin.com/in/derkysan/" target="_blank" className="flex items-center justify-center hover:border-2 w-8 h-8 rounded-full text-gray-500 hover:border-[#0a66c2] hover:text-[#0a66c2] transition-all duration-300 ease-in-out transform hover:scale-125 text-sm"                  >
+                <a href="https://www.linkedin.com/in/derkysan/" target="_blank" className="flex items-center justify-center hover:border-2 w-8 h-8 rounded-full text-gray-500 hover:border-[#0a66c2] hover:text-[#0a66c2] transition-all duration-300 ease-in-out transform hover:scale-125 text-sm">
                   <FaLinkedinIn />
                 </a>
                 <a href="https://github.com/Derkysan" target="_blank" className="flex items-center justify-center hover:border-2 w-8 h-8 rounded-full text-gray-500 hover:border-[#6e5494] hover:text-[#6e5494] transition-all duration-300 ease-in-out transform hover:scale-125 text-sm">

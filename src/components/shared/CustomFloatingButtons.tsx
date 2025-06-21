@@ -34,7 +34,7 @@ export const CustomFloatingButtons = ({ setIsContactOpen, handleTheme }: Props) 
       </div>
 
       {/* FLOATING SOCIAL BUTTONS */}
-      <div className="fixed bottom-6 items justify-center right-6 z-50 flex gap-4 md:flex-col left-6 mx-auto md:left-auto md:gap-2">
+      <div className="fixed bottom-6 items justify-end right-6 z-50 flex gap-4 md:flex-col left-6 mx-auto md:left-auto md:gap-2">
         <button
           onClick={() => setIsContactOpen(true)}
           className="flex items-center justify-center w-10 h-10 bg-gray-200 dark:bg-gray-900 text-gray-800 dark:text-gray-400 rounded-full transition-all duration-300 ease-in-out transform hover:scale-125 border border-gray-300 dark:border-gray-800 hover:border-orange-500 hover:text-orange-500 dark:hover:border-orange-500 dark:hover:text-orange-500"

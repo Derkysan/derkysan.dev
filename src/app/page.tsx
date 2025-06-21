@@ -44,7 +44,7 @@ export default function Page() {
   
 
   return (
-    <div className="w-full h-svh flex flex-col relative">
+    <div className="w-full min-h-svh flex flex-col relative">
       {/* CONTACT DIALOG */}
       <CustomContactDialog isContactOpen={isContactOpen} setIsContactOpen={setIsContactOpen} />
 
@@ -59,8 +59,8 @@ export default function Page() {
       <div className="flex flex-grow relative z-10">
         <div className="flex flex-col container mx-auto">
           {/* [calc(100vh-7rem)] */}
-          <div className="w-full flex flex-grow items-center gap-28 justify-center px-5 h-full">
-            <div className="lg:w-[45%]">
+          <div className="w-full flex flex-grow items-center justify-center px-5 py-8 min-h-svh">
+            <div className="lg:w-[45%] max-w-4xl">
               <div className="mb-8 flex justify-start">
                 <CustomLogo />
               </div>

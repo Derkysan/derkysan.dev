@@ -66,7 +66,7 @@ export const CustomContactDialog = ({
       <AlertDialogContent>
         <AlertDialogHeader>
           <AlertDialogTitle className={`text-4xl font-thin uppercase`}>
-            <span className={`text-4xl font-thin uppercase`}>Tienes algo en mente <CustomGradientText>conversemos</CustomGradientText></span>
+            <span className={`text-4xl font-thin uppercase`}>¿Tienes algo en mente? <CustomGradientText>conversemos</CustomGradientText></span>
           </AlertDialogTitle>
           <AlertDialogDescription>Completa el formulario y conversemos.</AlertDialogDescription>
         </AlertDialogHeader>
@@ -87,7 +87,7 @@ export const CustomContactDialog = ({
                 )}
               />
 
-              <div className="grid grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
                 <FormField
                   control={form.control}
                   name="email"
@@ -101,7 +101,7 @@ export const CustomContactDialog = ({
                     </FormItem>
                   )}
                 />
-              
+
                 <FormField
                   control={form.control}
                   name="phone"

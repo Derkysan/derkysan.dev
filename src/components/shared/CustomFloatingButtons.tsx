@@ -12,7 +12,7 @@ interface Props {
   handleTheme: () => void;
 }
 
-export const CustomFloatingButtons = ({ setIsContactOpen, handleTheme }: Props) => {
+export const CustomFloatingButtons = ({ handleTheme }: Props) => {
   const [isClient, setIsClient] = React.useState(false);
 
   const [showTooltip, setShowTooltip] = React.useState(false);

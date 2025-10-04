@@ -8,7 +8,11 @@ import { TooltipProvider } from "@/components/ui/tooltip"
 import { ThemeProvider } from "./theme-provider";
 import { Toaster } from "@/components/ui/toaster";
 
-export const Providers = ({children}: PropsWithChildren) => {
+type ProvidersProps = PropsWithChildren<{
+  initialTheme?: 'light' | 'dark';
+}>;
+
+export const Providers = ({ children, initialTheme }: ProvidersProps) => {
   // Create a client
   const queryClient = new QueryClient({
     defaultOptions: {
@@ -24,9 +28,10 @@ export const Providers = ({children}: PropsWithChildren) => {
       <TooltipProvider>   
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
+          defaultTheme={initialTheme ?? "dark"}
           enableSystem
           disableTransitionOnChange
+          storageKey="theme"
         >
           {children}
           <Toaster />

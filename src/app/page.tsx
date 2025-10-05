@@ -12,19 +12,28 @@ import { FaLinkedinIn } from "react-icons/fa";
 
 export default function Page() {
   const [isContactOpen, setIsContactOpen] = React.useState<boolean>(false);
-  const { theme, setTheme } = useTheme();
+  const { theme, setTheme, resolvedTheme } = useTheme();
 
   React.useEffect(() => {
-    setTheme('dark');
-  }, []);
+    const activeTheme = theme === 'system' ? resolvedTheme : theme;
+
+    if (!activeTheme) {
+      return;
+    }
+
+    document.cookie = `theme=${activeTheme}; path=/; max-age=${60 * 60 * 24 * 365}`;
+  }, [theme, resolvedTheme]);
 
   const handleTheme = () => {
-    if (theme === 'light') {
+    const currentTheme = theme === 'system' ? resolvedTheme : theme;
+
+    if (currentTheme === 'light') {
       setTheme('dark');
-      return
+      return;
     }
+
     setTheme('light');
-  }
+  };
 
   // const [isClient, setIsClient] = React.useState(false);
   

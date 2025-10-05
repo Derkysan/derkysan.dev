@@ -4,6 +4,7 @@ import "./globals.css";
 import { Nunito, Titillium_Web } from 'next/font/google'
 
 import { Providers } from "@/providers";
+import { cookies } from "next/headers";
 
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { GoogleAnalytics } from "@/components/shared";
@@ -45,16 +46,20 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  
+
+  const cookieStore = await cookies();
+  const themeCookie = cookieStore.get("theme")?.value;
+  const initialTheme = themeCookie === "light" || themeCookie === "dark" ? themeCookie : undefined;
+
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" className={initialTheme === "dark" ? "dark" : ""} suppressHydrationWarning>
       <body className={`${nunito.className} ${titilum.className} antialiased`}>
-        <Providers>
+        <Providers initialTheme={initialTheme}>
           {children}
           <SpeedInsights />
         </Providers>

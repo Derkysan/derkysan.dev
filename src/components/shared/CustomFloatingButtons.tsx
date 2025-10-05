@@ -66,7 +66,10 @@ export const CustomFloatingButtons = () => {
   return (
     <>
       {/* FLOATING THEME BUTTON */}
-      <div className="fixed top-6 right-6 z-50 flex flex-col gap-2" ref={themeButtonRef}>
+      <div
+        className="fixed top-6 right-6 z-50 flex flex-col items-end gap-2"
+        ref={themeButtonRef}
+      >
         <button
           onClick={() => setIsThemeMenuOpen((prev) => !prev)}
           className="flex items-center justify-center w-10 h-10 bg-gray-200 dark:bg-gray-900 text-gray-800 dark:text-gray-400 rounded-full transition-all duration-300 ease-in-out transform hover:scale-110 border border-gray-300 dark:border-gray-800"

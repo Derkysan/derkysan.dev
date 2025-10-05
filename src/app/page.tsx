@@ -15,14 +15,15 @@ export default function Page() {
   const { theme, resolvedTheme } = useTheme();
 
   React.useEffect(() => {
-    if (!theme) {
+    if (!theme || (theme === 'system' && !resolvedTheme)) {
       return;
     }
 
     const activeTheme = theme === 'system' ? resolvedTheme : theme;
 
-    if (typeof window !== 'undefined') {
-      localStorage.setItem('theme', theme);
+    if (activeTheme && typeof window !== 'undefined') {
+      localStorage.setItem('theme', activeTheme);
+      localStorage.setItem('theme-preference', theme);
     }
 
     if (activeTheme) {

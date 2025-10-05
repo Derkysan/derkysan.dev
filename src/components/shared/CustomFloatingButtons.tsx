@@ -50,7 +50,10 @@ export const CustomFloatingButtons = () => {
   const handleThemeSelection = (value: ThemeOption) => {
     setTheme(value);
     if (typeof window !== "undefined") {
-      localStorage.setItem("theme", value);
+      localStorage.setItem("theme-preference", value);
+      if (value === "light" || value === "dark") {
+        localStorage.setItem("theme", value);
+      }
     }
     setIsThemeMenuOpen(false);
   };

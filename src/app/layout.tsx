@@ -46,24 +46,47 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+const themeInitializer = `(() => {
+  try {
+    const storedTheme = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const theme = storedTheme === 'light' || storedTheme === 'dark'
+      ? storedTheme
+      : storedTheme === 'system'
+        ? (prefersDark ? 'dark' : 'light')
+        : (prefersDark ? 'dark' : 'light');
+
+    if (theme === 'dark') {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  } catch (error) {}
+})();`;
+
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
 
-  const cookieStore = cookies();
+  const cookieStore = await cookies();
   const themeCookie = cookieStore.get("theme")?.value;
   const initialTheme = themeCookie === "light" || themeCookie === "dark" ? themeCookie : undefined;
 
   return (
     <html lang="en" className={initialTheme === "dark" ? "dark" : ""} suppressHydrationWarning>
       <body className={`${nunito.className} ${titilum.className} antialiased`}>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: themeInitializer,
+          }}
+        />
         <Providers initialTheme={initialTheme}>
           {children}
           <SpeedInsights />
         </Providers>
-        
+
         <GoogleAnalytics />
       </body>
     </html>

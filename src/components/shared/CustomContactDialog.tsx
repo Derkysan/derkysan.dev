@@ -33,7 +33,9 @@ export const CustomContactDialog = ({
 }: Props) => {
 
   const { sendContactMutation } = useContact();
-  const { theme } = useTheme();
+  const { theme, resolvedTheme } = useTheme();
+  const activeTheme = theme === "system" ? resolvedTheme : theme;
+  const isDark = activeTheme === "dark";
 
   // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
@@ -145,7 +147,7 @@ export const CustomContactDialog = ({
               type="submit"
               className={`
                 px-4 rounded-md text-sm
-                ${theme === 'dark'
+                ${isDark
                   ? 'border-gradient bg-transparent text-gradient-light hover:bg-gradient-to-r hover:from-orange-500/10 hover:to-orange-600/10'
                   : 'border border-[#bfbfbf] text-gray-700 hover:bg-gray-200'
                 }

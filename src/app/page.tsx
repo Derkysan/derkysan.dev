@@ -12,28 +12,24 @@ import { FaLinkedinIn } from "react-icons/fa";
 
 export default function Page() {
   const [isContactOpen, setIsContactOpen] = React.useState<boolean>(false);
-  const { theme, setTheme, resolvedTheme } = useTheme();
+  const { theme, resolvedTheme } = useTheme();
 
   React.useEffect(() => {
+    if (!theme) {
+      return;
+    }
+
     const activeTheme = theme === 'system' ? resolvedTheme : theme;
 
-    if (!activeTheme) {
-      return;
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('theme', theme);
     }
 
-    document.cookie = `theme=${activeTheme}; path=/; max-age=${60 * 60 * 24 * 365}`;
+    if (activeTheme) {
+      document.documentElement.classList.toggle('dark', activeTheme === 'dark');
+      document.cookie = `theme=${activeTheme}; path=/; max-age=${60 * 60 * 24 * 365}`;
+    }
   }, [theme, resolvedTheme]);
-
-  const handleTheme = () => {
-    const currentTheme = theme === 'system' ? resolvedTheme : theme;
-
-    if (currentTheme === 'light') {
-      setTheme('dark');
-      return;
-    }
-
-    setTheme('light');
-  };
 
   // const [isClient, setIsClient] = React.useState(false);
   
@@ -58,11 +54,7 @@ export default function Page() {
       <CustomContactDialog isContactOpen={isContactOpen} setIsContactOpen={setIsContactOpen} />
 
       {/* FLOATING BUTTONS */}
-      <CustomFloatingButtons
-        isContactOpen={isContactOpen}
-        setIsContactOpen={setIsContactOpen}
-        handleTheme={handleTheme}
-      />
+      <CustomFloatingButtons />
 
       {/* FLOATING THEME TOGGLE BUTTON */}
       <div className="flex flex-grow relative z-10">

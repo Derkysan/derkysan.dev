@@ -12,13 +12,16 @@ import { Skeleton } from "@/components/ui/skeleton";
 
 export const CustomLogo = () => {
   const [isClient, setIsClient] = React.useState(false);
-  const { theme } = useTheme();
+  const { theme, resolvedTheme } = useTheme();
 
   React.useEffect(() => {
     setIsClient(true); // Establece el estado después de que se haya renderizado en el cliente
   }, []);
 
   if (!isClient) return <Skeleton className="w-[40px] h-[50px] rounded" />; // Skeleton con las mismas dimensiones del logo
+
+  const activeTheme = theme === "system" ? resolvedTheme : theme;
+  const isDark = activeTheme === "dark";
 
   return (
     <motion.div
@@ -34,7 +37,7 @@ export const CustomLogo = () => {
       }}
     >
       <div className="hover:scale-110 hover:-rotate-3 transition-all duration-200 ease-in-out">
-        {theme === 'dark'
+        {isDark
           ? <Image src={'/assets/svg/san.svg'} width={40} height={45} alt={"San"} className="transition-all duration-200 ease-in-out" />
           : <Image src={'/assets/svg/san-black.svg'} width={40} height={45} alt={"San"} className="transition-all duration-200 ease-in-out" />
         }

@@ -23,7 +23,7 @@ export const CustomHeroTitle = () => {
 
   return (
     <h1 className="flex gap-2 text-3xl uppercase mb-5">
-      Hola, Soy <span className={isDark ? `text-gradient-light` : "text-black"}>Derky</span>
+      Hola, Soy <span className={isDark ? `text-gradient-light` : "text-black"}>Derky Sánchez</span>
     </h1>
   );
 };

@@ -44,6 +44,13 @@
     "typescript": "^5"
   },
   "overrides": {
-    "axios": "^1.12.0"
+    "axios": "^1.12.0",
+    "brace-expansion": "^2.0.2",
+    "glob": {
+      "brace-expansion": "^2.0.2"
+    },
+    "@typescript-eslint/typescript-estree": {
+      "brace-expansion": "^2.0.2"
+    }
   }
 }

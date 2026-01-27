@@ -17,7 +17,7 @@ export const CustomTechStack = () => {
 
   return (
     <motion.ul
-      className="flex gap-3 text-3xl text-gray-600"
+      className="flex gap-3 text-3xl text-gray-600 bg-background"
       variants={{
         hidden: {},
         show: {

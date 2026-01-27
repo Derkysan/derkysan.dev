@@ -49,15 +49,10 @@ export const metadata: Metadata = {
 const themeInitializer = `(() => {
   try {
     const storedTheme = localStorage.getItem('theme');
-    const storedPreference = localStorage.getItem('theme-preference');
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     const theme = storedTheme === 'light' || storedTheme === 'dark'
       ? storedTheme
-      : storedPreference === 'light' || storedPreference === 'dark'
-        ? storedPreference
-        : storedPreference === 'system'
-          ? (prefersDark ? 'dark' : 'light')
-          : (prefersDark ? 'dark' : 'light');
+      : (prefersDark ? 'dark' : 'light');
 
     if (theme === 'dark') {
       document.documentElement.classList.add('dark');

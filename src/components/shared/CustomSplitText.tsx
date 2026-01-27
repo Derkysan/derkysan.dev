@@ -48,6 +48,7 @@ export const CustomSplitText = ({ text }: { text: string }) => {
             stiffness: 200,
             damping: 25,
           }}
+          className='bg-background'
         >
           {word}
           {/* Agregar espacio entre palabras */}

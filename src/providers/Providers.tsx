@@ -28,10 +28,10 @@ export const Providers = ({ children, initialTheme }: ProvidersProps) => {
       <TooltipProvider>   
         <ThemeProvider
           attribute="class"
-          defaultTheme={initialTheme ?? "system"}
-          enableSystem
+          defaultTheme={initialTheme ?? "dark"}
+          enableSystem={false}
           disableTransitionOnChange
-          storageKey="theme-preference"
+          storageKey="theme"
         >
           {children}
           <Toaster />

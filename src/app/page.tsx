@@ -3,7 +3,7 @@
 import React from "react";
 import { useTheme } from "next-themes";
 
-import { CustomContact, CustomContactDialog, CustomCopyTextBtn, CustomFloatingButtons, CustomGradientText, CustomHeroTitle, CustomLogo, CustomSplitText, CustomTechStack } from "@/components/shared";
+import { CustomContact, CustomContactDialog, CustomCopyTextBtn, CustomFloatingButtons, CustomGradientText, CustomHeroTitle, CustomLogo, CustomSplitText, CustomTechStack, InteractiveDotGrid } from "@/components/shared";
 
 import { FiGithub } from "react-icons/fi";
 import { FaLinkedinIn } from "react-icons/fa";
@@ -51,6 +51,13 @@ export default function Page() {
 
   return (
     <div className="w-full min-h-svh flex flex-col relative">
+      {/* INTERACTIVE DOT GRID BACKGROUND */}
+      <InteractiveDotGrid 
+        colorInicialDark="#44403c"
+        colorInicialLight="#b3b1b1"
+        opacidadInicial={0.25}
+      />
+      
       {/* CONTACT DIALOG */}
       <CustomContactDialog isContactOpen={isContactOpen} setIsContactOpen={setIsContactOpen} />
 

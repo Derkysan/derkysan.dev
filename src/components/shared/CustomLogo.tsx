@@ -36,10 +36,11 @@ export const CustomLogo = () => {
         delay: 0.1
       }}
     >
-      <div className="hover:scale-110 hover:-rotate-3 transition-all duration-200 ease-in-out">
+      <div className="scale-125 hover:scale-150 hover:-rotate-2 transition-all duration-200 ease-in-out bg-background/80 backdrop-blur-2xl p-2 rounded-lg shadow-3xl shadow-gray-300/50 dark:shadow-gray-950/50">
         {isDark
           ? <Image src={'/assets/svg/san.svg'} width={40} height={45} alt={"San"} className="transition-all duration-200 ease-in-out" />
-          : <Image src={'/assets/svg/san-black.svg'} width={40} height={45} alt={"San"} className="transition-all duration-200 ease-in-out" />
+          : <Image src={'/assets/svg/san.svg'} width={40} height={45} alt={"San"} className="transition-all duration-200 ease-in-out" />
+          // : <Image src={'/assets/svg/san-black.svg'} width={40} height={45} alt={"San"} className="transition-all duration-200 ease-in-out" />
         }
       </div>
     </motion.div>

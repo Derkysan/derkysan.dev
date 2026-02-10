@@ -3,63 +3,21 @@
 import React from "react";
 import { FaLinkedinIn } from "react-icons/fa";
 import { FiGithub } from "react-icons/fi";
-import { CgShapeCircle } from "react-icons/cg";
-import { PiSunDimBold } from "react-icons/pi";
 import { CustomFloatingButtonsSkeleton } from "./CustomFloatingButtonsSkeleton";
-import { useTheme } from "next-themes";
 import { motion } from "framer-motion";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 
 export const CustomFloatingButtons = () => {
   const [isClient, setIsClient] = React.useState(false);
-  const [iconKey, setIconKey] = React.useState(0);
-
-  const { theme, setTheme } = useTheme();
 
   React.useEffect(() => {
     setIsClient(true);
   }, []);
 
-  const toggleTheme = () => {
-    const newTheme = theme === "light" ? "dark" : "light";
-    setTheme(newTheme);
-    setIconKey(prev => prev + 1);
-  };
-
   if (!isClient) return <CustomFloatingButtonsSkeleton />;
 
   return (
     <>
-      {/* FLOATING THEME BUTTON */}
-      <div className="fixed top-6 right-6 z-50">
-        <Tooltip>
-          <TooltipTrigger asChild>
-            <button
-              onClick={toggleTheme}
-              className="flex items-center justify-center w-10 h-10 text-gray-800 dark:text-gray-400 rounded-full"
-              aria-label="Toggle theme"
-            >
-              <motion.div
-                key={iconKey}
-                initial={{ scale: 0.5 }}
-                animate={{ scale: 1 }}
-                transition={{
-                  type: "spring",
-                  stiffness: 260,
-                  damping: 10,
-                  duration: 0.6
-                }}
-              >
-                {theme === "dark" ? <CgShapeCircle /> : <PiSunDimBold />}
-              </motion.div>
-            </button>
-          </TooltipTrigger>
-          <TooltipContent side="left">
-            <p>Cambiar tema a {theme === "dark" ? "claro" : "oscuro"}</p>
-          </TooltipContent>
-        </Tooltip>
-      </div>
-
       {/* FLOATING SOCIAL BUTTONS */}
       <div className="fixed bottom-6 items justify-end right-6 z-50 flex gap-4 md:flex-col left-6 mx-auto md:left-auto md:gap-2">
         <Tooltip>

@@ -29,6 +29,7 @@ export const Providers = ({ children, initialTheme }: ProvidersProps) => {
         <ThemeProvider
           attribute="class"
           defaultTheme={initialTheme ?? "dark"}
+          forcedTheme="dark"
           enableSystem={false}
           disableTransitionOnChange
           storageKey="theme"

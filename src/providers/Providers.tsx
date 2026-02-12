@@ -31,7 +31,6 @@ export const Providers = ({ children, initialTheme }: ProvidersProps) => {
           defaultTheme={initialTheme ?? "dark"}
           forcedTheme="dark"
           enableSystem={false}
-          disableTransitionOnChange
           storageKey="theme"
         >
           {children}

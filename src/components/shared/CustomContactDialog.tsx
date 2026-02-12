@@ -1,7 +1,7 @@
 'use client'
 
 import React from "react";
-import { useTheme } from "next-themes";
+import { useTheme } from "@/providers/theme-provider";
 
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"

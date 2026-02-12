@@ -1,7 +1,7 @@
 'use client'
 
 import React from "react";
-import { useTheme } from "next-themes";
+import { useTheme } from "@/providers/theme-provider";
 
 import { CustomContact, CustomContactDialog, CustomCopyTextBtn, CustomFloatingButtons, CustomGradientText, CustomHeroTitle, CustomLogo, CustomSplitText, CustomTechStack } from "@/components/shared";
 
@@ -51,7 +51,13 @@ export default function Page() {
 
   return (
     <div className="w-full min-h-svh flex flex-col relative">
-
+      {/* INTERACTIVE DOT GRID BACKGROUND */}
+      {/* <InteractiveDotGrid 
+        colorInicialDark="#44403c"
+        colorInicialLight="#b3b1b1"
+        opacidadInicial={0.25}
+      /> */}
+      
       {/* CONTACT DIALOG */}
       <CustomContactDialog isContactOpen={isContactOpen} setIsContactOpen={setIsContactOpen} />
 
@@ -68,7 +74,7 @@ export default function Page() {
                 <CustomLogo />
               </div>
               <CustomHeroTitle />
-              <div className="lg:text-left text-lg font-light mb-10 leading-loose">
+              <div className="lg:text-left text-sm font-light mb-10 leading-loose">
                 <CustomSplitText text={"Desarrollador de software especializado en tecnologías frontend y backend. Con experiencia en React, TypeScript y frameworks modernos, desarrollo aplicaciones web escalables y de alto rendimiento, centradas en ofrecer experiencias de usuario fluidas y soluciones backend robustas."} />
               </div>
 

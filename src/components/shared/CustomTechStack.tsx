@@ -1,7 +1,7 @@
 'use client'
 
 import React from "react";
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { FaHtml5, FaCss3Alt, FaJs, FaReact, FaAngular, FaWordpressSimple } from "react-icons/fa6";
 import { SiNestjs } from "react-icons/si";
 import { CustomTechStackSkeleton } from "./CustomTechStackSkeleton";

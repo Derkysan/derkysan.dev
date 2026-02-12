@@ -4,7 +4,6 @@ import React from "react";
 import { FaLinkedinIn } from "react-icons/fa";
 import { FiGithub } from "react-icons/fi";
 import { CustomFloatingButtonsSkeleton } from "./CustomFloatingButtonsSkeleton";
-import { useTheme } from "@/providers/theme-provider";
 import { motion } from "motion/react";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 

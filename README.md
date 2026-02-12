@@ -19,3 +19,8 @@ Usa `.env` (o variables del entorno de despliegue):
 SENDGRID_APIKEY=...
 VITE_GA_MEASUREMENT_ID=...
 ```
+
+## Despliegue en Vercel
+
+- Este proyecto despliega el frontend con Vite (`dist`) y usa una funcion serverless en `/api/contact`.
+- Asegura la variable `SENDGRID_APIKEY` en Vercel (`Project Settings > Environment Variables`).

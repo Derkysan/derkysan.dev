@@ -10,7 +10,7 @@
     "build": "vite build",
     "start": "NODE_ENV=production node server/server.mjs",
     "preview": "vite preview",
-    "lint": "eslint src server/**/*.mjs vite.config.ts"
+    "lint": "eslint src api/**/*.ts server/**/*.mjs vite.config.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^4.1.3",

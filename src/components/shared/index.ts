@@ -12,3 +12,5 @@ export * from './CustomTechStackSkeleton';
 export * from './CustomWhatsAppBtn';
 export * from './GoogleAnalytics';
 export * from './InteractiveDotGrid';
+export * from './SideBar';
+export * from '../layouts/SidebarLayout';

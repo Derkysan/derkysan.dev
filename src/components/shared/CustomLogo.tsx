@@ -8,8 +8,11 @@ import { useTheme } from "@/providers/theme-provider";
 import { Skeleton } from "@/components/ui/skeleton";
 // import { SanLogo, SanLogoBlack } from "../../../public";
 
+interface CustomLogoProps {
+  active?: boolean;
+}
 
-export const CustomLogo = () => {
+export const CustomLogo: React.FC<CustomLogoProps> = ({ active = false }) => {
   const [isClient, setIsClient] = React.useState(false);
   const { theme, resolvedTheme } = useTheme();
 
@@ -35,13 +38,19 @@ export const CustomLogo = () => {
         delay: 0.1
       }}
     >
-      <div className="scale-125 hover:scale-150 hover:-rotate-2 transition-all duration-200 ease-in-out bg-background/80 backdrop-blur-2xl p-2 rounded-lg shadow-3xl shadow-gray-300/50 dark:shadow-gray-950/50">
+      <motion.div
+        initial={false}
+        animate={{ scale: active ? 1.5 : 1.25, rotate: active ? -2 : 0 }}
+        whileHover={{ scale: 1.5, rotate: -2 }}
+        transition={{ duration: 0.2, ease: "easeInOut" }}
+        className="bg-background/80 backdrop-blur-2xl p-2 rounded-lg shadow-3xl shadow-gray-300/50 dark:shadow-gray-950/50"
+      >
         {isDark
           ? <img src={'/assets/svg/san.svg'} width={40} height={45} alt={"San"} className="transition-all duration-200 ease-in-out" />
           : <img src={'/assets/svg/san.svg'} width={40} height={45} alt={"San"} className="transition-all duration-200 ease-in-out" />
           // : <img src={'/assets/svg/san-black.svg'} width={40} height={45} alt={"San"} className="transition-all duration-200 ease-in-out" />
         }
-      </div>
+      </motion.div>
     </motion.div>
   );
 };

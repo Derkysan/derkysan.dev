@@ -50,7 +50,7 @@ export default function Page() {
   
 
   return (
-    <div className="w-full min-h-svh flex flex-col relative">
+    <div className="w-full min-h-full flex flex-col relative">
       {/* INTERACTIVE DOT GRID BACKGROUND */}
       {/* <InteractiveDotGrid 
         colorInicialDark="#44403c"
@@ -62,29 +62,29 @@ export default function Page() {
       <CustomContactDialog isContactOpen={isContactOpen} setIsContactOpen={setIsContactOpen} />
 
       {/* FLOATING BUTTONS */}
-      <CustomFloatingButtons />
+      {/* <CustomFloatingButtons /> */}
 
       {/* FLOATING THEME TOGGLE BUTTON */}
       <div className="flex flex-grow relative z-10">
         <div className="flex flex-col container mx-auto">
           {/* [calc(100vh-7rem)] */}
-          <div className="w-full flex flex-grow items-center justify-center px-5 py-8 min-h-svh">
-            <div className="lg:w-[45%] max-w-4xl">
-              <div className="mb-8 flex justify-start">
+          <div className="w-full flex flex-grow items-center justify-center px-5 py-8 min-h-[calc(100vh-4rem)]">
+            <div className="lg:w-[75%] max-w-4xl">
+              {/* <div className="mb-8 flex justify-start">
                 <CustomLogo />
-              </div>
+              </div> */}
               <CustomHeroTitle />
               <div className="lg:text-left text-sm font-light mb-10 leading-loose">
                 <CustomSplitText text={"Desarrollador de software especializado en tecnologías frontend y backend. Con experiencia en React, TypeScript y frameworks modernos, desarrollo aplicaciones web escalables y de alto rendimiento, centradas en ofrecer experiencias de usuario fluidas y soluciones backend robustas."} />
               </div>
 
-              <div className="flex flex-wrap gap-4 items-stretch mb-10">
+              {/* <div className="flex flex-wrap gap-4 items-stretch mb-10">
                 <span className={`flex items-center text-sm uppercase tracking-wide`}>
                   <CustomGradientText>Tech Stack</CustomGradientText>
                 </span>
                 <div className="border-l border-gray-600 hidden md:flex"></div>
                 <CustomTechStack />
-              </div>
+              </div> */}
             {/* <div className="border">Contactar</div> */}
             </div>
           </div>

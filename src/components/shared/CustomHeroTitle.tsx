@@ -22,7 +22,7 @@ export const CustomHeroTitle = () => {
   const isDark = activeTheme === "dark";
 
   return (
-    <h1 className="flex gap-2 text-3xl uppercase mb-5 bg-background">
+    <h1 className="text-3xl uppercase mb-5 bg-background flex-wrap">
       Hola, Soy <span className={isDark ? `text-gradient-light` : "text-black"}>Derky Sánchez</span>
     </h1>
   );

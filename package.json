@@ -53,6 +53,7 @@
   },
   "overrides": {
     "axios": "^1.12.0",
+    "immutable": "^4.3.7",
     "brace-expansion": "^2.0.2",
     "glob": {
       "brace-expansion": "^2.0.2"

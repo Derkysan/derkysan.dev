@@ -7,6 +7,8 @@ import { CustomContact, CustomContactDialog, CustomCopyTextBtn, CustomFloatingBu
 
 import { FiGithub } from "react-icons/fi";
 import { FaLinkedinIn } from "react-icons/fa";
+import { HiOutlineMail } from "react-icons/hi";
+import sidebarConfig from "@/config/sidebar.config";
 
 
 
@@ -77,6 +79,20 @@ export default function Page() {
               <div className="lg:text-left text-sm font-light mb-10 leading-loose">
                 <CustomSplitText text={"Desarrollador de software especializado en tecnologías frontend y backend. Con experiencia en React, TypeScript y frameworks modernos, desarrollo aplicaciones web escalables y de alto rendimiento, centradas en ofrecer experiencias de usuario fluidas y soluciones backend robustas."} />
               </div>
+
+              {!sidebarConfig.enabled && (
+                <div className="flex items-center gap-4 mb-10">
+                  <a href={sidebarConfig.social.linkedin} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center w-9 h-9 border-gray-300 dark:border-gray-600 text-gray-500 hover:border-[#0a66c2] hover:text-[#0a66c2] transition-all duration-300 ease-in-out transform hover:scale-110 text-sm">
+                    <FaLinkedinIn />
+                  </a>
+                  <a href={sidebarConfig.social.github} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center w-9 h-9 border-gray-300 dark:border-gray-600 text-gray-500 hover:border-[#6e5494] hover:text-[#6e5494] transition-all duration-300 ease-in-out transform hover:scale-110 text-sm">
+                    <FiGithub />
+                  </a>
+                  <a href="mailto:derkysan19@gmail.com" rel="noopener noreferrer" className="flex items-center justify-center w-9 h-9 border-gray-300 dark:border-gray-600 text-gray-500 hover:border-[#ea4335] hover:text-[#ea4335] transition-all duration-300 ease-in-out transform hover:scale-110 text-sm">
+                    <HiOutlineMail />
+                  </a>
+                </div>
+              )}
 
               {/* <div className="flex flex-wrap gap-4 items-stretch mb-10">
                 <span className={`flex items-center text-sm uppercase tracking-wide`}>

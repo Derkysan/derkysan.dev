@@ -6,13 +6,18 @@ import { motion } from "motion/react";
 
 import { useTheme } from "@/providers/theme-provider";
 import { Skeleton } from "@/components/ui/skeleton";
+import { cn } from "@/lib/utils";
 // import { SanLogo, SanLogoBlack } from "../../../public";
 
 interface CustomLogoProps {
   active?: boolean;
+  contained?: boolean;
 }
 
-export const CustomLogo: React.FC<CustomLogoProps> = ({ active = false }) => {
+export const CustomLogo: React.FC<CustomLogoProps> = ({
+  active = false,
+  contained = false,
+}) => {
   const [isClient, setIsClient] = React.useState(false);
   const { theme, resolvedTheme } = useTheme();
 
@@ -24,6 +29,11 @@ export const CustomLogo: React.FC<CustomLogoProps> = ({ active = false }) => {
 
   const activeTheme = theme === "system" ? resolvedTheme : theme;
   const isDark = activeTheme === "dark";
+  const restingScale = contained ? 1 : 1.5;
+  const activeScale = contained ? 1 : 1.25;
+  const hoverScale = contained ? 1 : 1.5;
+  const logoWidth = contained ? 24 : 40;
+  const logoHeight = contained ? 28 : 45;
 
   return (
     <motion.div
@@ -37,17 +47,21 @@ export const CustomLogo: React.FC<CustomLogoProps> = ({ active = false }) => {
         damping: 20,
         delay: 0.1
       }}
+      className={cn(contained && "flex h-full w-full items-center justify-center")}
     >
       <motion.div
         initial={false}
-        animate={{ scale: active ? 1.5 : 1.25, rotate: active ? -2 : 0 }}
-        whileHover={{ scale: 1.5, rotate: -2 }}
+        animate={{ scale: active ? activeScale : restingScale }}
+        whileHover={{ scale: hoverScale }}
         transition={{ duration: 0.2, ease: "easeInOut" }}
-        className="bg-background/80 backdrop-blur-2xl p-2 rounded-lg shadow-3xl shadow-gray-300/50 dark:shadow-gray-950/50"
+        className={cn(
+          "flex items-center justify-center",
+          contained ? "p-1.5" : "p-2"
+        )}
       >
         {isDark
-          ? <img src={'/assets/svg/san.svg'} width={40} height={45} alt={"San"} className="transition-all duration-200 ease-in-out" />
-          : <img src={'/assets/svg/san.svg'} width={40} height={45} alt={"San"} className="transition-all duration-200 ease-in-out" />
+          ? <img src={'/assets/svg/san.svg'} width={logoWidth} height={logoHeight} alt={"San"} className="block transition-all duration-200 ease-in-out" />
+          : <img src={'/assets/svg/san.svg'} width={logoWidth} height={logoHeight} alt={"San"} className="block transition-all duration-200 ease-in-out" />
           // : <img src={'/assets/svg/san-black.svg'} width={40} height={45} alt={"San"} className="transition-all duration-200 ease-in-out" />
         }
       </motion.div>

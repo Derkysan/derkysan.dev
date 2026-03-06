@@ -13,6 +13,13 @@ import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
 
+const SIDEBAR_TRANSITION_DURATION = 0.3
+const SIDEBAR_TRANSITION_EASE: [number, number, number, number] = [0.4, 0, 0.2, 1]
+const SIDEBAR_LABEL_TRANSITION = {
+  duration: SIDEBAR_TRANSITION_DURATION,
+  ease: SIDEBAR_TRANSITION_EASE,
+}
+
 // Types
 export interface SidebarMenuItem {
   id: string
@@ -61,7 +68,7 @@ export const SideBar = React.forwardRef<HTMLElement, SidebarProps>(
       expanded: controlledExpanded,
       onExpandedChange,
       className,
-      expandedWidth = "180px",
+      expandedWidth = "200px",
       collapsedWidth = "72px",
       children,
     },
@@ -100,18 +107,34 @@ export const SideBar = React.forwardRef<HTMLElement, SidebarProps>(
         <motion.aside
           ref={ref}
           className={cn(
-            "relative flex flex-col h-screen bg-background border-r border-[#F07D00] transition-all duration-100 ease-linear",
+            "relative flex flex-col h-full bg-background border rounded-xl transition-colors duration-300 ease-in-out overflow-hidden",
+            actualExpanded ? "border-[#603100]" : "border-transparent",
             className
           )}
           initial={false}
           animate={{ width: actualExpanded ? expandedWidth : collapsedWidth }}
+          transition={{ duration: SIDEBAR_TRANSITION_DURATION, ease: SIDEBAR_TRANSITION_EASE }}
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
         >
+          <motion.div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0"
+            initial={false}
+            animate={{
+              opacity: actualExpanded ? 1 : 0,
+            }}
+            transition={{ duration: SIDEBAR_TRANSITION_DURATION, ease: SIDEBAR_TRANSITION_EASE }}
+            style={{
+              background:
+                "radial-gradient(circle at top right, rgba(240,125,0,0.18), transparent 34%), linear-gradient(180deg, rgba(255,255,255,0.03), transparent 18%)",
+            }}
+          />
+
           {/* Header/Brand Area */}
-          <SidebarHeader>
+          <SidebarHeader expanded={actualExpanded}>
             <div className={cn(
-              "flex items-center px-4 py-6",
+              "relative z-10 flex min-w-0 items-center overflow-hidden px-4 py-6",
               // !actualExpanded && "justify-center px-2"
             )}>
               {resolvedBrand || (
@@ -121,7 +144,7 @@ export const SideBar = React.forwardRef<HTMLElement, SidebarProps>(
           </SidebarHeader>
 
           {/* Navigation Menu Area */}
-          <SidebarMenu>
+          <SidebarMenu expanded={actualExpanded}>
             {children || (
               <nav className="flex h-full flex-col justify-center space-y-1 px-2">
                 {menuItems.map((item) => (
@@ -153,15 +176,21 @@ SideBar.displayName = "SideBar"
 
 interface SidebarHeaderProps {
   children: React.ReactNode
+  expanded: boolean
   className?: string
 }
 
 export const SidebarHeader: React.FC<SidebarHeaderProps> = ({ 
   children, 
+  expanded,
   className 
 }) => {
   return (
-    <header className={cn("shrink-0 border-b border-[#F07D00]", className)}>
+    <header className={cn(
+      "shrink-0 overflow-hidden transition-colors duration-300 ease-in-out",
+      expanded ? "border-b-[#F07D00]" : "border-b-transparent",
+      className
+    )}>
       {children}
     </header>
   )
@@ -169,15 +198,21 @@ export const SidebarHeader: React.FC<SidebarHeaderProps> = ({
 
 interface SidebarMenuProps {
   children: React.ReactNode
+  expanded: boolean
   className?: string
 }
 
 export const SidebarMenu: React.FC<SidebarMenuProps> = ({ 
   children, 
+  expanded,
   className 
 }) => {
   return (
-    <div className={cn("flex-1 overflow-y-auto py-4", className)}>
+    <div className={cn(
+      "relative z-10 flex-1 overflow-y-auto py-4 transition-opacity duration-300 ease-in-out",
+      expanded ? "opacity-100" : "opacity-35",
+      className
+    )}>
       {children}
     </div>
   )
@@ -196,8 +231,9 @@ export const SidebarFooter: React.FC<SidebarFooterProps> = ({
 }) => {
   return (
     <footer className={cn(
-      "shrink-0 border-t border-[#F07D00] p-4",
-      !expanded && "px-2",
+      "relative z-10 flex h-24 shrink-0 items-center justify-center overflow-hidden px-4 transition-[color,border-color,opacity] duration-300 ease-in-out",
+      expanded ? "border-t-[#F07D00]" : "border-t-transparent",
+      expanded ? "opacity-100" : "opacity-50",
       className
     )}>
       {children}
@@ -217,7 +253,7 @@ const SidebarMenuItem: React.FC<SidebarMenuItemProps> = ({ item, expanded }) => 
     <Button
       variant="ghost"
       className={cn(
-        "w-full justify-start gap-3 relative text-gray-400",
+        "relative w-full justify-start gap-3 overflow-hidden text-gray-400",
         
       )}
       onClick={item.onClick}
@@ -228,20 +264,22 @@ const SidebarMenuItem: React.FC<SidebarMenuItemProps> = ({ item, expanded }) => 
           href={item.href}
           target={isExternalLink ? "_blank" : undefined}
           rel={isExternalLink ? "noopener noreferrer" : undefined}
+          className="flex min-w-0 items-center gap-3 overflow-hidden"
         >
           <span className="shrink-0">{item.icon}</span>
-          <AnimatePresence mode="wait">
-            {/* {expanded && ( */}
+          <AnimatePresence initial={false}>
+            {expanded && (
               <motion.span
-                // initial={{ opacity: 0, width: 0 }}
-                animate={{ opacity: 1, width: "auto" }}
-                // exit={{ opacity: 0, width: 0 }}
-                transition={{ duration: 0.2 }}
-                className="overflow-hidden whitespace-nowrap"
+                key={`${item.id}-label`}
+                initial={{ opacity: 0, width: 0, x: -10 }}
+                animate={{ opacity: 1, width: "auto", x: 0 }}
+                exit={{ opacity: 0, width: 0, x: -10 }}
+                transition={SIDEBAR_LABEL_TRANSITION}
+                className="overflow-hidden whitespace-nowrap tracking-[0.24] font-mono text-xs text-gray-400 uppercase"
               >
                 {item.label}
               </motion.span>
-            {/* )} */}
+            )}
           </AnimatePresence>
           {item.badge && expanded && (
             <motion.span
@@ -257,13 +295,14 @@ const SidebarMenuItem: React.FC<SidebarMenuItemProps> = ({ item, expanded }) => 
       ) : (
         <>
           <span className="shrink-0">{item.icon}</span>
-          <AnimatePresence mode="wait">
+          <AnimatePresence initial={false}>
             {expanded && (
               <motion.span
-                initial={{ opacity: 0, width: 0 }}
-                animate={{ opacity: 1, width: "auto" }}
-                exit={{ opacity: 0, width: 0 }}
-                transition={{ duration: 0.2 }}
+                key={`${item.id}-label`}
+                initial={{ opacity: 0, width: 0, x: -10 }}
+                animate={{ opacity: 1, width: "auto", x: 0 }}
+                exit={{ opacity: 0, width: 0, x: -10 }}
+                transition={SIDEBAR_LABEL_TRANSITION}
                 className="overflow-hidden whitespace-nowrap"
               >
                 {item.label}

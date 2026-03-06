@@ -7,7 +7,7 @@
 
 export const sidebarConfig = {
   // Activar/desactivar el sidebar globalmente
-  enabled: false,
+  enabled: true,
   
   // Comportamiento del sidebar
   expandOnHover: true,

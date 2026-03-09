@@ -84,6 +84,10 @@ export const SideBar = React.forwardRef<HTMLElement, SidebarProps>(
     // Compute actual expanded state considering hover
     const actualExpanded = expandOnHover ? isExpanded || isHovering : isExpanded
 
+    React.useEffect(() => {
+      onExpandedChange?.(actualExpanded)
+    }, [actualExpanded, onExpandedChange])
+
     const handleMouseEnter = () => {
       if (expandOnHover) {
         setIsHovering(true)
@@ -107,8 +111,8 @@ export const SideBar = React.forwardRef<HTMLElement, SidebarProps>(
         <motion.aside
           ref={ref}
           className={cn(
-            "relative flex flex-col h-full bg-background border rounded-xl transition-colors duration-300 ease-in-out overflow-hidden",
-            actualExpanded ? "border-[#603100]" : "border-transparent",
+            "relative flex flex-col h-full bg-background transition-colors duration-300 ease-in-out overflow-hidden",
+            actualExpanded ? "border-r-[#603100]" : "border-transparent",
             className
           )}
           initial={false}
@@ -125,10 +129,10 @@ export const SideBar = React.forwardRef<HTMLElement, SidebarProps>(
               opacity: actualExpanded ? 1 : 0,
             }}
             transition={{ duration: SIDEBAR_TRANSITION_DURATION, ease: SIDEBAR_TRANSITION_EASE }}
-            style={{
-              background:
-                "radial-gradient(circle at top right, rgba(240,125,0,0.18), transparent 34%), linear-gradient(180deg, rgba(255,255,255,0.03), transparent 18%)",
-            }}
+            // style={{
+            //   background:
+            //     "radial-gradient(circle at top right, rgba(240,125,0,0.18), transparent 34%), linear-gradient(180deg, rgba(255,255,255,0.03), transparent 18%)",
+            // }}
           />
 
           {/* Header/Brand Area */}
@@ -275,7 +279,7 @@ const SidebarMenuItem: React.FC<SidebarMenuItemProps> = ({ item, expanded }) => 
                 animate={{ opacity: 1, width: "auto", x: 0 }}
                 exit={{ opacity: 0, width: 0, x: -10 }}
                 transition={SIDEBAR_LABEL_TRANSITION}
-                className="overflow-hidden whitespace-nowrap tracking-[0.24] font-mono text-xs text-gray-400 uppercase"
+                className="overflow-hidden whitespace-nowrap tracking-[0.24em] font-mono text-[11px] text-gray-400 uppercase"
               >
                 {item.label}
               </motion.span>

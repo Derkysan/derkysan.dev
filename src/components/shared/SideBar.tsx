@@ -2,6 +2,7 @@
 
 import * as React from "react"
 import { motion, AnimatePresence } from "motion/react"
+import { BsArrowUpRightSquare } from "react-icons/bs";
 import { 
   Menu, 
   Home,
@@ -268,7 +269,7 @@ const SidebarMenuItem: React.FC<SidebarMenuItemProps> = ({ item, expanded }) => 
           href={item.href}
           target={isExternalLink ? "_blank" : undefined}
           rel={isExternalLink ? "noopener noreferrer" : undefined}
-          className="flex min-w-0 items-center gap-3 overflow-hidden"
+          className="flex min-w-0 items-center gap-3 overflow-hidden hover:bg-black hover:text-white"
         >
           <span className="shrink-0">{item.icon}</span>
           <AnimatePresence initial={false}>
@@ -279,9 +280,10 @@ const SidebarMenuItem: React.FC<SidebarMenuItemProps> = ({ item, expanded }) => 
                 animate={{ opacity: 1, width: "auto", x: 0 }}
                 exit={{ opacity: 0, width: 0, x: -10 }}
                 transition={SIDEBAR_LABEL_TRANSITION}
-                className="overflow-hidden whitespace-nowrap tracking-[0.24em] font-mono text-[11px] text-gray-400 uppercase"
+                className="flex flex-1 justify-between gap-2 overflow-hidden whitespace-nowrap tracking-[0.24em] font-mono text-[10px] text-gray-400 uppercase"
               >
                 {item.label}
+                {/* {isExternalLink && <span className="text-[8px] text-gray-700"><BsArrowUpRightSquare /></span>} */}
               </motion.span>
             )}
           </AnimatePresence>

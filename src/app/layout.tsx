@@ -20,11 +20,11 @@ const titilum = Titillium_Web({
 });
 
 export const metadata: Metadata = {
-  title: "Derkysan | Software Developer",
-  description: "Desarrollador de software especializado en tecnologías frontend y backend. Con experiencia en React, TypeScript y frameworks modernos, desarrollo aplicaciones web escalables y de alto rendimiento, centradas en ofrecer experiencias de usuario fluidas y soluciones backend robustas.",
+  title: "Derkysan | Páginas web para Pymes",
+  description: "Desarrollo páginas web orientadas a captar clientes para emprendedores y Pymes que necesitan una presencia profesional en internet.",
   openGraph: {
-    title: "Derkysan | Software Developer",
-    description: "Desarrollador de software especializado en tecnologías frontend y backend. Con experiencia en React, TypeScript y frameworks modernos, desarrollo aplicaciones web escalables y de alto rendimiento, centradas en ofrecer experiencias de usuario fluidas y soluciones backend robustas.",
+    title: "Derkysan | Páginas web para Pymes",
+    description: "Desarrollo páginas web orientadas a captar clientes para emprendedores y Pymes que necesitan una presencia profesional en internet.",
     url: "https://www.derkysan.dev",
     siteName: "derkysan.dev",
     images: [
@@ -39,8 +39,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Derkysan | Software Developer",
-    description: "Desarrollador de software especializado en tecnologías frontend y backend. Con experiencia en React, TypeScript y frameworks modernos, desarrollo aplicaciones web escalables y de alto rendimiento, centradas en ofrecer experiencias de usuario fluidas y soluciones backend robustas.",
+    title: "Derkysan | Páginas web para Pymes",
+    description: "Desarrollo páginas web orientadas a captar clientes para emprendedores y Pymes que necesitan una presencia profesional en internet.",
     images: ["https://www.derkysan.dev/opengraph-image.png"], // Misma imagen para Twitter
   },
 };

@@ -44,8 +44,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
   const { name, email, phone, message } = parseBody(req.body);
 
-  if (!name || !email || !phone || !message) {
-    return res.status(400).json({ error: "Todos los campos son requeridos" });
+  if (!name || !email || !message) {
+    return res.status(400).json({ error: "Nombre, correo y mensaje son requeridos" });
   }
 
   if (!sendgridApiKey) {
@@ -67,7 +67,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
           <h2 style="padding-left: 10px; color: #333;">Nuevo Contacto</h2>
           <div style="margin: 15px 0; padding: 10px; border-bottom: 1px solid #ddd;"><strong>Nombre:</strong> ${name}</div>
           <div style="margin: 15px 0; padding: 10px; border-bottom: 1px solid #ddd;"><strong>Correo Electrónico:</strong> <a href="mailto:${email}">${email}</a></div>
-          <div style="margin: 15px 0; padding: 10px; border-bottom: 1px solid #ddd;"><strong>Teléfono:</strong> <a href="tel:${phone}">${phone}</a></div>
+          <div style="margin: 15px 0; padding: 10px; border-bottom: 1px solid #ddd;"><strong>Teléfono:</strong> ${phone ? `<a href="tel:${phone}">${phone}</a>` : "No informado"}</div>
           <div style="margin: 15px 0; padding: 10px;"><strong>Mensaje:</strong><br>${message}</div>
           <div style="text-align: center; margin-top: 20px; font-size: 12px; color: #777;">Este mensaje fue enviado desde el formulario de contacto en derkysan.dev.</div>
         </div>

@@ -53,20 +53,33 @@ export const SidebarLayout: React.FC<SidebarLayoutProps> = ({
   hideSidebar = false,
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false)
+  const [isExpanded, setIsExpanded] = React.useState(defaultExpanded)
   
   const defaultMenuItems: SidebarMenuItem[] = [
+    // {
+    //   id: "home-view",
+    //   label: "About",
+    //   icon: <Home className="h-5 w-5" />,
+    //   href: "/",
+    // },
+    // {
+    //   id: "pymes-view",
+    //   label: "Pymes",
+    //   icon: <Briefcase className="h-5 w-5" />,
+    //   href: "/pymes",
+    // },
     {
       id: "github",
       label: "GitHub",
       icon: <FiGithub className="h-5 w-5" />,
       href: "https://github.com/Derkysan",
     },
-    // {
-    //   id: "linkedin",
-    //   label: "LinkedIn",
-    //   icon: <FaLinkedinIn className="h-5 w-5" />,
-    //   href: "https://www.linkedin.com/in/derkysan/",
-    // },
+    {
+      id: "linkedin",
+      label: "LinkedIn",
+      icon: <FaLinkedinIn className="h-5 w-5" />,
+      href: "https://www.linkedin.com/in/derkysan/",
+    },
     {
       id: "email",
       label: "Contactar",
@@ -148,12 +161,9 @@ export const SidebarLayout: React.FC<SidebarLayoutProps> = ({
       {/* </div> */}
 
       {/* Version */}
-      <div className={`flex ${isExpanded ? "flex-row w-full text-left justify-start pl-4" : "flex-col gap-y-0"}  text-[10px] text-muted-foreground whitespace-nowrap leading-tight`}>
-        {/* v1.0.0 */}
-        <span className={`transition-all duration-300 ease-in-out overflow-hidden text-nowrap uppercase ${isExpanded ? "w-auto opacity-100" : "w-0 opacity-0"}`}>© copyright</span>
-        {/* <span>{new Date().getFullYear()}</span> */}
-        <span className={`${isExpanded ? 'text-gray-100' : 'text-white'}`}>20</span>
-        <span className={`${isExpanded ? 'text-gray-100' : 'text-white'}`}>26</span>
+      <div className={`flex flex-row items-center text-[10px] text-muted-foreground whitespace-nowrap leading-tight ${isExpanded ? "w-full justify-start pl-4" : "justify-center"}`}>
+        <span className={`transition-all duration-300 ease-in-out overflow-hidden text-nowrap uppercase ${isExpanded ? "max-w-[100px] opacity-100" : "max-w-0 opacity-0"}`}>  copyright&nbsp;</span>
+        <span className={`${isExpanded ? 'text-gray-100' : 'text-white'}`}>2026</span>
       </div>
     </div>
   )
@@ -192,11 +202,11 @@ export const SidebarLayout: React.FC<SidebarLayoutProps> = ({
   return (
     <div className="flex h-screen overflow-hidden">
       <header className="fixed inset-x-0 top-0 z-40 flex h-16 items-center justify-between border-[#F07D00]/20 bg-background/80 px-4 backdrop-blur-xl md:hidden">
-        <div className="flex items-center gap-3 rounded-full border border-[#F07D00]/20 bg-background/80 px-3 py-2 shadow-[0_8px_24px_rgba(0,0,0,0.18)]">
+        <div className="flex items-center gap-3 rounded-full border-[#F07D00]/20 bg-background/80 px-3 py-2 shadow-[0_8px_24px_rgba(0,0,0,0.18)]">
           <div className="h-8 w-8 shrink-0 overflow-hidden">
             <CustomLogo contained />
           </div>
-          <span className="text-[11px] tracking-[0.28em] text-foreground/80">DERKYSAN</span>
+          {/* <span className="text-[11px] tracking-[0.28em] text-foreground/80">DERKYSAN</span> */}
         </div>
         <button
           type="button"
@@ -352,18 +362,19 @@ export const SidebarLayout: React.FC<SidebarLayoutProps> = ({
         )}
       </AnimatePresence>
 
-      <div className="hidden md:block p-3">
+      <div className="hidden md:block">
         <SideBar
           brand={customBrand || defaultBrand}
           menuItems={resolvedMenuItems}
           footer={customFooter || defaultFooter}
           expandOnHover={expandOnHover}
           defaultExpanded={defaultExpanded}
+          onExpandedChange={setIsExpanded}
         />
       </div>
 
       {/* Main Content Area */}
-      <main className="flex-1 overflow-y-auto bg-background pt-14 md:pt-0">
+      <main className={`flex-1 overflow-y-auto bg-background md:pt-0`}>
         <div className="h-full">
           {children}
         </div>

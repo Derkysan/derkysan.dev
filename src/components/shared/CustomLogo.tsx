@@ -1,4 +1,3 @@
-'use client'
 
 import React from "react";
 
@@ -29,9 +28,9 @@ export const CustomLogo: React.FC<CustomLogoProps> = ({
 
   const activeTheme = theme === "system" ? resolvedTheme : theme;
   const isDark = activeTheme === "dark";
-  const restingScale = contained ? 1 : 1.5;
-  const activeScale = contained ? 1 : 1.25;
-  const hoverScale = contained ? 1 : 1.5;
+  const restingScale = contained ? 1 : 1;
+  const activeScale = contained ? 1 : 1;
+  const hoverScale = contained ? 1 : 1.1;
   const logoWidth = contained ? 24 : 40;
   const logoHeight = contained ? 28 : 45;
 

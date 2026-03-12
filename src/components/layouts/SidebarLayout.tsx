@@ -1,4 +1,3 @@
-"use client"
 
 import React from "react"
 import { AnimatePresence, motion } from "motion/react"
@@ -89,7 +88,7 @@ export const SidebarLayout: React.FC<SidebarLayoutProps> = ({
   ]
 
   const defaultBrand = (expanded: boolean) => (
-    <div className="flex min-w-0 items-center gap-3">
+    <a href="/" className="flex min-w-0 items-center gap-3">
       <div className="flex h-10 w-10 shrink-0 items-center justify-center">
         <CustomLogo active={expanded} />
       </div>
@@ -107,7 +106,7 @@ export const SidebarLayout: React.FC<SidebarLayoutProps> = ({
           </motion.span>
         )}
       </AnimatePresence>
-    </div>
+    </a>
   )
 
   const defaultFooter = (isExpanded: boolean) => (
@@ -201,8 +200,8 @@ export const SidebarLayout: React.FC<SidebarLayoutProps> = ({
 
   return (
     <div className="flex h-screen overflow-hidden">
-      <header className="fixed inset-x-0 top-0 z-40 flex h-16 items-center justify-between border-[#F07D00]/20 bg-background/80 px-4 backdrop-blur-xl md:hidden">
-        <div className="flex items-center gap-3 rounded-full border-[#F07D00]/20 bg-background/80 px-3 py-2 shadow-[0_8px_24px_rgba(0,0,0,0.18)]">
+      <header className="fixed inset-x-0 top-0 z-40 flex h-16 items-center justify-between border-[#F07D00]/20 px-4 backdrop-blur-xl md:hidden">
+        <div className="flex items-center gap-3 rounded-full border-[#F07D00]/20 px-3 py-2 shadow-[0_8px_24px_rgba(0,0,0,0.18)]">
           <div className="h-8 w-8 shrink-0 overflow-hidden">
             <CustomLogo contained />
           </div>
@@ -247,7 +246,7 @@ export const SidebarLayout: React.FC<SidebarLayoutProps> = ({
                       {customBrand}
                     </div>
                   ) : (
-                    <div className="flex min-w-0 items-center gap-3">
+                    <a href="/" className="flex min-w-0 items-center gap-3">
                       <div className="flex h-12 w-12 items-center justify-center overflow-hidden">
                         <CustomLogo active contained />
                       </div>
@@ -259,7 +258,7 @@ export const SidebarLayout: React.FC<SidebarLayoutProps> = ({
                           DERKYSAN
                         </p>
                       </div>
-                    </div>
+                    </a>
                   )}
 
                   <button

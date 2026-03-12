@@ -1,4 +1,3 @@
-'use client'
 
 import React from "react";
 import { useTheme } from "@/providers/theme-provider";

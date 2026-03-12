@@ -1,97 +1,43 @@
-'use client'
 
 import React from "react";
 import { CustomContactDialog } from "@/components/shared";
 import { usePersistTheme } from "@/hooks";
-import {
-  ArrowRight,
-  BarChart3,
-  Check,
-  Globe,
-  LayoutTemplate,
-  MessageCircleMore,
-  RefreshCw,
-  Search,
-  ShieldCheck,
-  Sparkles,
-  WandSparkles,
-} from "lucide-react";
+import { ArrowRight, Check } from "lucide-react";
 
-const painPoints = [
-  "Tus clientes potenciales no encuentran una página clara cuando buscan tu negocio.",
-  "Tu empresa depende solo de redes sociales o WhatsApp para explicar lo que ofrece.",
-  "Ya tienes una web, pero no comunica bien, no convierte o se ve desactualizada.",
+const stats = [
+  { value: "24/7", label: "presencia disponible" },
+  { value: "+claridad", label: "en tu propuesta comercial" },
+  { value: "+contactos", label: "desde una web mejor pensada" },
 ];
 
-const modules = [
+const servicePaths = [
   {
-    icon: Globe,
-    title: "Presencia digital profesional",
-    description: "Una web clara, rápida y adaptable para presentar tu empresa, servicios, diferenciales y canales de contacto.",
-  },
-  {
-    icon: LayoutTemplate,
-    title: "Landing orientada a captar clientes",
-    description: "Secciones pensadas para convertir visitas en consultas: beneficios, confianza, preguntas frecuentes y CTA visibles.",
-  },
-  {
-    icon: Search,
-    title: "Contenido que responde dudas reales",
-    description: "Servicios, proceso, tiempos, diferenciadores, precios referenciales y formas de contacto para facilitar la decisión.",
-  },
-  {
-    icon: MessageCircleMore,
-    title: "Captación de oportunidades",
-    description: "Formularios, WhatsApp, correo y llamadas a la acción para convertir visitas en leads reales.",
-  },
-  {
-    icon: RefreshCw,
-    title: "Mejora de sitios existentes",
-    description: "Rediseño, reorganización del mensaje y mejoras visuales para páginas que hoy no están cumpliendo su objetivo.",
-  },
-  {
-    icon: BarChart3,
-    title: "Base para crecer",
-    description: "Sitio listo para campañas, medición y mejoras futuras sin tener que empezar otra vez desde cero.",
-  },
-  {
-    icon: ShieldCheck,
-    title: "Confianza y soporte",
-    description: "Diseño serio, velocidad, estructura ordenada y acompañamiento para que tu negocio proyecte solidez.",
-  },
-];
-
-const scenarios = [
-  {
-    title: "Si hoy no tienes página web",
+    title: "Si hoy no tienes presencia digital",
+    description:
+      "Creamos una página simple, profesional y lista para explicar qué haces, generar confianza y facilitar el contacto.",
     points: [
-      "Creamos una presencia digital sólida desde cero.",
-      "Ordenamos tu oferta para que un potencial cliente entienda rápido qué haces.",
-      "Definimos una estructura pensada para captar consultas desde el primer día.",
+      "Mensaje claro desde el primer bloque",
+      "Estructura pensada para Pymes",
+      "Contacto visible y directo",
     ],
   },
   {
-    title: "Si ya tienes una web pero no funciona",
+    title: "Si ya tienes una web pero no está funcionando",
+    description:
+      "Reordenamos el contenido, mejoramos el diseño y simplificamos el mensaje para que tu sitio trabaje mejor comercialmente.",
     points: [
-      "Revisamos el mensaje, la claridad de la oferta y la jerarquía del contenido.",
-      "Mejoramos diseño, velocidad y llamados a la acción para aumentar conversiones.",
-      "Actualizamos tu presencia sin perder lo que ya aporta valor.",
+      "Mejor jerarquía visual",
+      "Más claridad en servicios y diferenciales",
+      "Mejores llamados a la acción",
     ],
   },
 ];
 
-const processSteps = [
-  "Definimos tu servicio, cliente ideal y si necesitas crear o mejorar tu presencia actual.",
-  "Ordenamos el contenido para explicar mejor tu propuesta y eliminar fricciones comerciales.",
-  "Diseño y desarrollo una página rápida, clara y alineada con tu identidad visual.",
-  "Se publica con formularios activos, estructura de conversión y base lista para seguir creciendo.",
-];
-
-const benefits = [
-  "Más credibilidad frente a clientes nuevos y alianzas",
-  "Una presencia propia que no depende de algoritmos ni plataformas externas",
-  "Servicios y diferenciales explicados con mayor claridad",
-  "Canal directo para solicitudes, cotizaciones y seguimiento comercial",
+const deliverables = [
+  "Diseño alineado con tu identidad actual",
+  "Sitio claro, moderno y adaptable a móvil",
+  "Secciones enfocadas en confianza y conversión",
+  "Base lista para campañas o mejoras futuras",
 ];
 
 export default function PymesPage() {
@@ -100,104 +46,92 @@ export default function PymesPage() {
   usePersistTheme();
 
   return (
-    <main className="relative min-h-screen overflow-hidden bg-background text-foreground">
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(249,176,0,0.15),transparent_22%),radial-gradient(circle_at_80%_20%,rgba(240,125,0,0.18),transparent_18%),linear-gradient(180deg,rgba(255,255,255,0.02),transparent_18%)]" />
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#F07D00]/60 to-transparent" />
-
+    <main className="relative min-h-screen overflow-hidden bg-background text-foreground border">
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(249,176,0,0.08),transparent_18%),linear-gradient(180deg,rgba(255,255,255,0.03),transparent_20%)]" />
       <CustomContactDialog isContactOpen={isContactOpen} setIsContactOpen={setIsContactOpen} />
-
-      <section className="relative mx-auto flex min-h-screen w-full max-w-7xl items-center px-5 py-16 sm:px-8 lg:px-10">
-        <div className="grid w-full gap-12 lg:grid-cols-[minmax(0,1.15fr)_420px] lg:items-center">
-          <div>
-            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[#F07D00]/25 bg-[#F07D00]/8 px-4 py-2 text-[11px] uppercase tracking-[0.3em] text-[#f8af00]">
-              <Sparkles className="h-3.5 w-3.5" />
-              Presencia web para Pymes
+      
+      <div className="h-svh">
+        <section className="h-1/2 relative mx-auto w-full max-w-7xl px-5 pb-8 pt-16 sm:px-8 lg:px-10">
+          <div className="grid gap-10 border-white/8 pb-12 lg:grid-cols-[1.25fr_0.75fr] lg:items-start">
+            <div>
+              <p className="mb-5 text-[11px] uppercase tracking-[0.32em] text-[#f8af00]">
+                /Presencia digital para Pymes/
+              </p>
+              <h1 className="max-w-4xl text-4xl font-mono text-white sm:text-6xl lg:text-5xl uppercase">
+                Para vender mejor tu negocio necesita verse mejor.
+              </h1>
             </div>
 
-            <h1 className="max-w-4xl text-4xl font-light uppercase leading-tight text-white sm:text-5xl lg:text-6xl">
-              Presencia digital para Pymes que necesitan empezar bien o
-              <span className="text-gradient-light"> mejorar lo que hoy no está funcionando</span>.
-            </h1>
-
-            <p className="mt-6 max-w-3xl text-sm leading-8 text-zinc-300 sm:text-base">
-              Desarrollo páginas para empresas que aún no tienen una presencia web profesional y también para Pymes que ya cuentan con un sitio,
-              pero necesitan mejorarlo para comunicar mejor, verse más confiables y captar más oportunidades.
-            </p>
-
-            <div className="mt-10 flex flex-col gap-4 sm:flex-row">
+            <div className="max-w-sm lg:justify-self-end">
+              <p className="text-sm leading-2 text-zinc-300">
+                Ayudo a Pymes que aún no tienen web y también a empresas que ya tienen una, pero necesitan mejorarla para comunicar con más claridad y captar más oportunidades.
+              </p>
               <button
                 type="button"
                 onClick={() => setIsContactOpen(true)}
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-light px-6 py-3 text-sm font-semibold uppercase tracking-[0.18em] text-black transition-transform duration-200 hover:scale-[1.02]"
+                className="mt-8 inline-flex items-center gap-2 border-b border-[#F07D00]/45 pb-2 text-sm uppercase tracking-[0.18em] text-white transition-colors duration-200 hover:text-[#f8af00]"
               >
-                Solicitar página
+                Solicitar propuesta
                 <ArrowRight className="h-4 w-4" />
               </button>
-              <a
-                href="#modulos"
-                className="inline-flex items-center justify-center gap-2 rounded-full border border-white/15 bg-white/5 px-6 py-3 text-sm uppercase tracking-[0.18em] text-white/85 transition-colors duration-200 hover:bg-white/10"
-              >
-                Ver módulos
-              </a>
             </div>
+          </div>
+        </section>
 
-            <div className="mt-12 grid gap-4 sm:grid-cols-3">
-              {[
-                { value: "01", label: "mensaje claro y profesional" },
-                { value: "02", label: "estructura enfocada en conversión" },
-                { value: "03", label: "contacto directo y medible" },
-              ].map((item) => (
-                <div key={item.value} className="rounded-3xl border border-white/10 bg-white/[0.03] p-5 backdrop-blur-sm">
-                  <p className="text-xs uppercase tracking-[0.35em] text-[#f8af00]">{item.value}</p>
-                  <p className="mt-3 text-sm uppercase leading-6 text-zinc-200">{item.label}</p>
+        <section className="h-1/2 relative mx-auto w-full bg-gray-950">
+          <div className="h-full overflow-hidden">
+            <div className="relative w-full overflow-hidden bg-gray-700">
+              {/* <img
+                src="https://placehold.co/1600x900/171717/e7e5e4?text=Imagen+referencial+del+servicio"
+                alt="Imagen referencial del servicio"
+                className="h-full object-cover"
+              /> */}
+              <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.05),rgba(0,0,0,0.28))]" />
+            </div>
+          </div>
+        </section>
+      </div>
+
+
+      
+
+      <section className="relative mx-auto w-full max-w-7xl px-5 py-14 sm:px-8 lg:px-10">
+        <div className="grid gap-10 border-b border-white/8 pb-14 lg:grid-cols-[0.7fr_1.3fr]">
+          <div>
+            <p className="text-[11px] uppercase tracking-[0.32em] text-zinc-500">/Qué resuelve/</p>
+          </div>
+          <div>
+            <h2 className="max-w-4xl text-3xl font-light leading-tight tracking-[-0.04em] text-white sm:text-5xl">
+              Ya sea una primera web o una mejora de la actual, el objetivo es el mismo: que tu negocio se entienda rápido y transmita confianza.
+            </h2>
+            <p className="mt-6 max-w-2xl text-sm leading-7 text-zinc-400">
+              Un buen sitio no necesita complicarse. Necesita un mensaje claro, una estructura correcta y una presencia visual coherente con tu negocio.
+            </p>
+
+            <div className="mt-12 grid gap-8 sm:grid-cols-3">
+              {stats.map((stat) => (
+                <div key={stat.label}>
+                  <p className="text-4xl font-light tracking-[-0.04em] text-[#2f6bff] sm:text-5xl">{stat.value}</p>
+                  <p className="mt-3 text-xs uppercase tracking-[0.2em] text-zinc-400">{stat.label}</p>
                 </div>
               ))}
             </div>
           </div>
-
-          <aside className="relative">
-            <div className="absolute -inset-3 rounded-[2rem] bg-gradient-to-br from-[#F9B000]/20 to-[#F07D00]/5 blur-2xl" />
-            <div className="relative rounded-[2rem] border border-white/10 bg-zinc-950/70 p-6 shadow-[0_20px_80px_rgba(0,0,0,0.45)] backdrop-blur-xl sm:p-8">
-              <div className="mb-6 flex items-center justify-between">
-                <div>
-                  <p className="text-xs uppercase tracking-[0.3em] text-zinc-500">Enfoque</p>
-                  <h2 className="mt-2 text-2xl font-light uppercase text-white">Qué busca una Pyme</h2>
-                </div>
-                <WandSparkles className="h-8 w-8 text-[#f8af00]" />
-              </div>
-
-              <div className="space-y-4">
-                {painPoints.map((item) => (
-                  <div key={item} className="flex gap-3 rounded-2xl border border-white/8 bg-white/[0.03] p-4">
-                    <div className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#F07D00]/15 text-[#f8af00]">
-                      <Check className="h-4 w-4" />
-                    </div>
-                    <p className="text-sm leading-6 text-zinc-300">{item}</p>
-                  </div>
-                ))}
-              </div>
-
-              <div className="mt-6 rounded-2xl border border-[#F07D00]/20 bg-[#F07D00]/8 p-5">
-                <p className="text-xs uppercase tracking-[0.28em] text-[#f8af00]">Resultado esperado</p>
-                <p className="mt-3 text-sm leading-7 text-zinc-200">
-                  Una presencia digital que ayude a vender mejor: desde construir tu primera web hasta mejorar una que hoy no está rindiendo.
-                </p>
-              </div>
-            </div>
-          </aside>
         </div>
       </section>
 
-      <section className="relative mx-auto w-full max-w-7xl px-5 pb-12 sm:px-8 lg:px-10">
+      <section className="relative mx-auto w-full max-w-7xl px-5 py-14 sm:px-8 lg:px-10">
         <div className="grid gap-5 lg:grid-cols-2">
-          {scenarios.map((scenario) => (
-            <article key={scenario.title} className="rounded-[30px] border border-white/10 bg-white/[0.03] p-7">
-              <p className="text-xs uppercase tracking-[0.32em] text-[#f8af00]">Escenario</p>
-              <h2 className="mt-3 text-2xl font-light uppercase text-white">{scenario.title}</h2>
-              <div className="mt-6 space-y-4">
-                {scenario.points.map((point) => (
+          {servicePaths.map((item) => (
+            <article key={item.title} className="rounded-[24px] border border-white/10 bg-white/[0.03] p-7">
+              <p className="text-[11px] uppercase tracking-[0.3em] text-[#f8af00]">Servicio</p>
+              <h3 className="mt-3 text-2xl font-light leading-tight text-white">{item.title}</h3>
+              <p className="mt-4 max-w-xl text-sm leading-7 text-zinc-300">{item.description}</p>
+
+              <div className="mt-8 space-y-4">
+                {item.points.map((point) => (
                   <div key={point} className="flex items-start gap-3">
-                    <div className="mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-[#F07D00]/30 bg-[#F07D00]/10 text-[#f8af00]">
+                    <div className="mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#F07D00]/12 text-[#f8af00]">
                       <Check className="h-3.5 w-3.5" />
                     </div>
                     <p className="text-sm leading-7 text-zinc-300">{point}</p>
@@ -209,90 +143,55 @@ export default function PymesPage() {
         </div>
       </section>
 
-      <section id="modulos" className="relative mx-auto w-full max-w-7xl px-5 pb-20 sm:px-8 lg:px-10">
-        <div className="mb-10 max-w-3xl">
-          <p className="text-xs uppercase tracking-[0.32em] text-[#f8af00]">Módulos de interés</p>
-          <h2 className="mt-3 text-3xl font-light uppercase text-white sm:text-4xl">
-            Contenido pensado para responder lo que un emprendedor realmente necesita saber
-          </h2>
-        </div>
+      <section className="relative mx-auto w-full max-w-7xl px-5 py-14 sm:px-8 lg:px-10">
+        <div className="grid gap-10 border-y border-white/8 py-14 lg:grid-cols-[1fr_1fr]">
+          <div>
+            <p className="text-[11px] uppercase tracking-[0.32em] text-zinc-500">/Qué incluye/</p>
+            <h2 className="mt-4 max-w-xl text-3xl font-light leading-tight tracking-[-0.04em] text-white sm:text-4xl">
+              Un diseño más simple, un mensaje más claro y una base sólida para captar clientes.
+            </h2>
+          </div>
 
-        <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-          {modules.map(({ icon: Icon, title, description }) => (
-            <article key={title} className="group rounded-[28px] border border-white/10 bg-white/[0.03] p-6 transition-all duration-300 hover:-translate-y-1 hover:border-[#F07D00]/35 hover:bg-white/[0.05]">
-              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#F07D00]/10 text-[#f8af00]">
-                <Icon className="h-5 w-5" />
+          <div className="space-y-4">
+            {deliverables.map((item) => (
+              <div key={item} className="flex items-start gap-3 border-b border-white/8 pb-4">
+                <div className="mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-[#F07D00]/20 bg-[#F07D00]/10 text-[#f8af00]">
+                  <Check className="h-3.5 w-3.5" />
+                </div>
+                <p className="text-sm leading-7 text-zinc-300">{item}</p>
               </div>
-              <h3 className="mt-5 text-xl font-light uppercase text-white">{title}</h3>
-              <p className="mt-3 text-sm leading-7 text-zinc-300">{description}</p>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section className="relative mx-auto w-full max-w-7xl px-5 py-20 sm:px-8 lg:px-10">
-        <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr]">
-          <div className="rounded-[30px] border border-white/10 bg-white/[0.03] p-7">
-            <p className="text-xs uppercase tracking-[0.32em] text-[#f8af00]">Beneficios</p>
-            <h2 className="mt-3 text-3xl font-light uppercase text-white">Lo que ganas con una presencia web sólida</h2>
-            <div className="mt-8 space-y-4">
-              {benefits.map((item) => (
-                <div key={item} className="flex items-start gap-3">
-                  <div className="mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-[#F07D00]/30 bg-[#F07D00]/10 text-[#f8af00]">
-                    <Check className="h-3.5 w-3.5" />
-                  </div>
-                  <p className="text-sm leading-7 text-zinc-300">{item}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="rounded-[30px] border border-white/10 bg-zinc-950/60 p-7">
-            <p className="text-xs uppercase tracking-[0.32em] text-[#f8af00]">Proceso</p>
-            <h2 className="mt-3 text-3xl font-light uppercase text-white">Cómo se construye la página</h2>
-            <div className="mt-8 space-y-5">
-              {processSteps.map((step, index) => (
-                <div key={step} className="flex gap-4 rounded-2xl border border-white/8 bg-white/[0.03] p-4">
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#F07D00]/12 text-sm font-semibold text-[#f8af00]">
-                    0{index + 1}
-                  </div>
-                  <p className="pt-1 text-sm leading-7 text-zinc-300">{step}</p>
-                </div>
-              ))}
-            </div>
+            ))}
           </div>
         </div>
       </section>
 
-      <section className="relative mx-auto w-full max-w-7xl px-5 pb-24 sm:px-8 lg:px-10">
-        <div className="rounded-[34px] border border-[#F07D00]/20 bg-[linear-gradient(135deg,rgba(249,176,0,0.12),rgba(255,255,255,0.02)_35%,rgba(240,125,0,0.08))] p-8 sm:p-10">
-          <p className="text-xs uppercase tracking-[0.32em] text-[#f8af00]">Llamado a la acción</p>
-          <div className="mt-4 grid gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:items-end">
-            <div>
-              <h2 className="text-3xl font-light uppercase leading-tight text-white sm:text-4xl">
-                Si tu Pyme necesita construir o mejorar su presencia digital, esta página puede ser el punto de partida.
-              </h2>
-              <p className="mt-4 max-w-2xl text-sm leading-8 text-zinc-300">
-                Cuéntame qué vendes, cómo estás mostrando hoy tu negocio y qué objetivo buscas. Puedo ayudarte a transformar esa necesidad en una web clara, útil y preparada para convertir.
-              </p>
-            </div>
+      <section className="relative mx-auto w-full max-w-7xl px-5 pb-24 pt-14 sm:px-8 lg:px-10">
+        <div className="grid gap-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-end">
+          <div>
+            <p className="text-[11px] uppercase tracking-[0.32em] text-[#f8af00]">/Contacto/</p>
+            <h2 className="mt-4 max-w-4xl text-3xl font-light leading-tight tracking-[-0.04em] text-white sm:text-5xl">
+              Si tu Pyme necesita presencia digital o una mejora real de su sitio actual, conversemos.
+            </h2>
+            <p className="mt-5 max-w-2xl text-sm leading-7 text-zinc-400">
+              Cuéntame qué vendes, cómo te estás mostrando hoy y qué necesitas mejorar. La idea es construir una página más simple, más clara y más útil para tu negocio.
+            </p>
+          </div>
 
-            <div className="flex flex-col gap-4 lg:items-end">
-              <button
-                type="button"
-                onClick={() => setIsContactOpen(true)}
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-black px-6 py-3 text-sm font-semibold uppercase tracking-[0.18em] text-white transition-colors duration-200 hover:bg-black/80"
-              >
-                Quiero recibir una propuesta
-                <ArrowRight className="h-4 w-4" />
-              </button>
-              <a
-                href="mailto:derkysan19@gmail.com"
-                className="text-sm uppercase tracking-[0.18em] text-zinc-200 underline decoration-[#F07D00]/45 underline-offset-4"
-              >
-                derkysan19@gmail.com
-              </a>
-            </div>
+          <div className="flex flex-col gap-4 lg:items-end">
+            <button
+              type="button"
+              onClick={() => setIsContactOpen(true)}
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-light px-6 py-3 text-sm font-semibold uppercase tracking-[0.18em] text-black transition-transform duration-200 hover:scale-[1.02]"
+            >
+              Quiero mejorar mi presencia digital
+              <ArrowRight className="h-4 w-4" />
+            </button>
+            <a
+              href="mailto:derkysan19@gmail.com"
+              className="text-sm uppercase tracking-[0.18em] text-zinc-200 underline decoration-[#F07D00]/45 underline-offset-4"
+            >
+              derkysan19@gmail.com
+            </a>
           </div>
         </div>
       </section>

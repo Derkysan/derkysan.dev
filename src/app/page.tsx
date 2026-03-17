@@ -18,7 +18,7 @@ export default function Page() {
   usePersistTheme();
 
   return (
-    <div className="relative flex min-h-screen w-full flex-col overflow-hidden">
+    <div className="relative flex min-h-dvh w-full flex-col overflow-hidden">
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_bottom,rgba(249,176,0,0.08),transparent_42%),linear-gradient(-45deg,rgba(255,255,255,0.02),transparent_18%)]" />
 
       <CustomContactDialog isContactOpen={isContactOpen} setIsContactOpen={setIsContactOpen} />

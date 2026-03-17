@@ -31,7 +31,7 @@ export const CustomLogo: React.FC<CustomLogoProps> = ({
   const restingScale = contained ? 1 : 1;
   const activeScale = contained ? 1 : 1;
   const hoverScale = contained ? 1 : 1.1;
-  const logoWidth = contained ? 30 : 40;
+  const logoWidth = contained ? 28 : 40;
   const logoHeight = contained ? 34 : 45;
 
   return (

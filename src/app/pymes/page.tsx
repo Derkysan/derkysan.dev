@@ -46,7 +46,7 @@ export default function PymesPage() {
   usePersistTheme();
 
   return (
-    <main className="relative min-h-screen overflow-hidden bg-background text-foreground border">
+    <main className="relative min-h-dvh overflow-hidden bg-background text-foreground border">
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(249,176,0,0.08),transparent_18%),linear-gradient(180deg,rgba(255,255,255,0.03),transparent_20%)]" />
       <CustomContactDialog isContactOpen={isContactOpen} setIsContactOpen={setIsContactOpen} />
       

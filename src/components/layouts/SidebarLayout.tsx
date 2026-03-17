@@ -197,7 +197,7 @@ export const SidebarLayout: React.FC<SidebarLayoutProps> = ({
   }
 
   return (
-    <div className="flex h-screen overflow-hidden">
+    <div className="flex h-dvh overflow-hidden">
       <header className="fixed inset-x-0 top-0 z-40 flex py-6 items-center justify-between border-[#F07D00]/20 px-4 backdrop-blur-xl md:hidden">
         <div className="flex items-center gap-3 rounded-full border-[#F07D00]/20 px-3 py-2 shadow-[0_8px_24px_rgba(0,0,0,0.18)]">
           <div className="h-10 shrink-0 overflow-hidden">
@@ -233,20 +233,21 @@ export const SidebarLayout: React.FC<SidebarLayoutProps> = ({
           </AnimatePresence>
           {/* <span className="text-[11px] tracking-[0.28em] text-foreground/80">DERKYSAN</span> */}
         </div>
-        <button
-          type="button"
-          onClick={() => setMobileMenuOpen((prev) => !prev)}
-          aria-label={mobileMenuOpen ? "Cerrar menú" : "Abrir menú"}
-          className="inline-flex h-11 w-11 items-center justify-center rounded-full border-[#F07D00]/30 bg-background/80 text-primary shadow-[0_8px_24px_rgba(0,0,0,0.18)] transition-colors hover:bg-accent"
-        >
-          <motion.div
-            animate={{ rotate: mobileMenuOpen ? 45 : 0 }}
-            transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
-          >
-            <Plus className="h-5 w-5" />
-          </motion.div>
-        </button>
       </header>
+
+      <button
+        type="button"
+        onClick={() => setMobileMenuOpen((prev) => !prev)}
+        aria-label={mobileMenuOpen ? "Cerrar menú" : "Abrir menú"}
+        className="fixed bottom-6 right-6 z-40 inline-flex h-12 w-12 items-center justify-center rounded-full border-[#F07D00]/30 bg-background/80 text-primary shadow-[0_8px_24px_rgba(0,0,0,0.18)] backdrop-blur-md transition-colors hover:bg-accent md:hidden"
+      >
+        <motion.div
+          animate={{ rotate: mobileMenuOpen ? 45 : 0 }}
+          transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+        >
+          <Plus className="h-5 w-5" />
+        </motion.div>
+      </button>
 
       <AnimatePresence>
         {mobileMenuOpen && (

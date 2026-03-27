@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
 
-# Sitemap location (optional - add when you have a sitemap)
-# Sitemap: https://derkysan.dev/sitemap.xml
+Sitemap: https://www.derkysan.dev/sitemap.xml

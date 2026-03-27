@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from "motion/react"
 import { SideBar, type SidebarMenuItem } from "../shared/SideBar"
 import { CustomLogo } from "../shared/CustomLogo"
 import {
+  FlaskConical,
   Mail,
   Settings,
   FileText,
@@ -13,6 +14,71 @@ import {
 } from "lucide-react"
 import { FaLinkedinIn } from "react-icons/fa";
 import { FiGithub } from "react-icons/fi";
+import { MdAlternateEmail } from "react-icons/md";
+
+const ParallaxGlow: React.FC = () => {
+  const glowRef = React.useRef<HTMLDivElement>(null)
+  const target = React.useRef({ x: 0, y: 0 })
+  const current = React.useRef({ x: 0, y: 0 })
+  const raf = React.useRef<number>(0)
+
+  React.useEffect(() => {
+    const prefersReducedMotion = matchMedia("(prefers-reduced-motion: reduce)").matches
+    if (prefersReducedMotion) return
+
+    const ease = 0.08
+    const intensity = 80
+
+    function lerp(a: number, b: number, t: number) {
+      return a + (b - a) * t
+    }
+
+    function loop() {
+      current.current.x = lerp(current.current.x, target.current.x, ease)
+      current.current.y = lerp(current.current.y, target.current.y, ease)
+
+      if (glowRef.current) {
+        glowRef.current.style.transform = `translate(${current.current.x.toFixed(2)}px, ${current.current.y.toFixed(2)}px)`
+      }
+
+      raf.current = requestAnimationFrame(loop)
+    }
+
+    const handleMouseMove = (e: MouseEvent) => {
+      const vw = window.innerWidth
+      const vh = window.innerHeight
+      const nx = ((e.clientX / vw) - 0.5) * 2
+      const ny = ((e.clientY / vh) - 0.5) * 2
+      target.current.x = -nx * intensity
+      target.current.y = -ny * intensity
+    }
+
+    const handleMouseLeave = () => {
+      target.current.x = 0
+      target.current.y = 0
+    }
+
+    window.addEventListener("mousemove", handleMouseMove)
+    window.addEventListener("mouseleave", handleMouseLeave)
+    raf.current = requestAnimationFrame(loop)
+
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove)
+      window.removeEventListener("mouseleave", handleMouseLeave)
+      cancelAnimationFrame(raf.current)
+    }
+  }, [])
+
+  return (
+    <div
+      ref={glowRef}
+      aria-hidden="true"
+      className="pointer-events-none absolute bottom-0 right-0 translate-x-1/4 translate-y-1/4 will-change-transform"
+    >
+      <div className="h-[420px] w-[420px] rounded-full bg-gradient-to-b from-[#F9B000]/10 to-[#F07D00]/10 blur-[110px]" />
+    </div>
+  )
+}
 
 const SIDEBAR_BRAND_TRANSITION = {
   duration: 0.3,
@@ -65,6 +131,12 @@ export const SidebarLayout: React.FC<SidebarLayoutProps> = ({
     //   icon: <Briefcase className="h-5 w-5" />,
     //   href: "/pymes",
     // },
+    // {
+    //   id: "lab",
+    //   label: "Lab",
+    //   icon: <FlaskConical className="h-5 w-5" />,
+    //   href: "/lab",
+    // },
     {
       id: "github",
       label: "GitHub",
@@ -80,7 +152,8 @@ export const SidebarLayout: React.FC<SidebarLayoutProps> = ({
     {
       id: "email",
       label: "Contactar",
-      icon: <Mail className="h-5 w-5" />,
+      // icon: <Mail className="h-5 w-5" />,
+      icon: <MdAlternateEmail className="h-5 w-5" />,
       href: "mailto:derkysan.dev@gmail.com",
     },
   ]
@@ -199,7 +272,7 @@ export const SidebarLayout: React.FC<SidebarLayoutProps> = ({
   return (
     <div className="flex h-dvh overflow-hidden">
       <header className="fixed inset-x-0 top-0 z-40 flex py-6 items-center justify-between border-[#F07D00]/20 px-4 backdrop-blur-xl md:hidden">
-        <div className="flex items-center gap-3 rounded-full border-[#F07D00]/20 px-3 py-2 shadow-[0_8px_24px_rgba(0,0,0,0.18)]">
+        <a href="/" className="flex items-center gap-3 rounded-full border-[#F07D00]/20 px-3 py-0 shadow-[0_8px_24px_rgba(0,0,0,0.18)]">
           <div className="h-10 shrink-0 overflow-hidden">
             <CustomLogo contained />
             {/* <AnimatePresence initial={false}>
@@ -232,7 +305,7 @@ export const SidebarLayout: React.FC<SidebarLayoutProps> = ({
             )}
           </AnimatePresence>
           {/* <span className="text-[11px] tracking-[0.28em] text-foreground/80">DERKYSAN</span> */}
-        </div>
+        </a>
       </header>
 
       <button
@@ -332,8 +405,9 @@ export const SidebarLayout: React.FC<SidebarLayoutProps> = ({
       </div>
 
       {/* Main Content Area */}
-      <main className={`flex-1 overflow-y-auto bg-background md:pt-0`}>
-        <div className="h-full">
+      <main className="relative flex-1 overflow-hidden bg-background md:pt-0">
+        <ParallaxGlow />
+        <div className="relative z-10 h-full overflow-y-auto">
           {children}
         </div>
       </main>

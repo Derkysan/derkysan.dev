@@ -8,6 +8,9 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { cn } from "@/lib/utils";
 // import { SanLogo, SanLogoBlack } from "../../../public";
 
+const LOGO_LOADED_KEY = "logo_loaded";
+let logoHasLoaded = typeof sessionStorage !== "undefined" && sessionStorage.getItem(LOGO_LOADED_KEY) === "1";
+
 interface CustomLogoProps {
   active?: boolean;
   contained?: boolean;
@@ -17,28 +20,33 @@ export const CustomLogo: React.FC<CustomLogoProps> = ({
   active = false,
   contained = false,
 }) => {
-  const [isClient, setIsClient] = React.useState(false);
+  const [isClient, setIsClient] = React.useState(logoHasLoaded);
+  const skipAnimation = React.useRef(logoHasLoaded);
   const { theme, resolvedTheme } = useTheme();
 
   React.useEffect(() => {
-    setIsClient(true); // Establece el estado después de que se haya renderizado en el cliente
+    if (!logoHasLoaded) {
+      logoHasLoaded = true;
+      sessionStorage.setItem(LOGO_LOADED_KEY, "1");
+    }
+    setIsClient(true);
   }, []);
 
-  if (!isClient) return <Skeleton className="w-[40px] h-[50px] rounded" />; // Skeleton con las mismas dimensiones del logo
+  if (!isClient) return <Skeleton className="w-[40px] h-[50px] rounded" />;
 
   const activeTheme = theme === "system" ? resolvedTheme : theme;
   const isDark = activeTheme === "dark";
   const restingScale = contained ? 1 : 1;
   const activeScale = contained ? 1 : 1;
   const hoverScale = contained ? 1 : 1.1;
-  const logoWidth = contained ? 30 : 40;
+  const logoWidth = contained ? 28 : 40;
   const logoHeight = contained ? 34 : 45;
 
   return (
     <motion.div
-      initial={{ opacity: 0, scale: 0.8 }}
+      initial={skipAnimation.current ? false : { opacity: 0, scale: 0.8 }}
       animate={{ opacity: 1, scale: 1 }}
-      transition={{
+      transition={skipAnimation.current ? { duration: 0 } : {
         duration: 0.5,
         ease: "easeOut",
         type: "spring",

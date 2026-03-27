@@ -11,6 +11,7 @@ import {
 } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
+import { Skeleton } from "@/components/ui/skeleton"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
 
 const SIDEBAR_TRANSITION_DURATION = 0.3
@@ -57,6 +58,9 @@ export interface SidebarProps {
   children?: React.ReactNode
 }
 
+const SIDEBAR_LOADED_KEY = "sidebar_loaded"
+let sidebarHasLoaded = typeof sessionStorage !== "undefined" && sessionStorage.getItem(SIDEBAR_LOADED_KEY) === "1"
+
 export const SideBar = React.forwardRef<HTMLElement, SidebarProps>(
   (
     {
@@ -77,12 +81,24 @@ export const SideBar = React.forwardRef<HTMLElement, SidebarProps>(
     // State management
     const [internalExpanded, setInternalExpanded] = React.useState(defaultExpanded)
     const [isHovering, setIsHovering] = React.useState(false)
+    const [isLoaded, setIsLoaded] = React.useState(sidebarHasLoaded)
+    const skipAnimation = React.useRef(sidebarHasLoaded)
 
     const isControlled = controlledExpanded !== undefined
     const isExpanded = isControlled ? controlledExpanded : internalExpanded
 
     // Compute actual expanded state considering hover
     const actualExpanded = expandOnHover ? isExpanded || isHovering : isExpanded
+
+    React.useEffect(() => {
+      if (sidebarHasLoaded) return
+      const timer = setTimeout(() => {
+        sidebarHasLoaded = true
+        sessionStorage.setItem(SIDEBAR_LOADED_KEY, "1")
+        setIsLoaded(true)
+      }, 400)
+      return () => clearTimeout(timer)
+    }, [])
 
     React.useEffect(() => {
       onExpandedChange?.(actualExpanded)
@@ -139,10 +155,33 @@ export const SideBar = React.forwardRef<HTMLElement, SidebarProps>(
           <SidebarHeader expanded={actualExpanded}>
             <div className={cn(
               "relative z-10 flex min-w-0 items-center overflow-hidden px-4 py-6",
-              // !actualExpanded && "justify-center px-2"
             )}>
-              {resolvedBrand || (
-                <DefaultBrand expanded={actualExpanded} />
+              {skipAnimation.current ? (
+                resolvedBrand || <DefaultBrand expanded={actualExpanded} />
+              ) : (
+                <AnimatePresence mode="wait">
+                  {!isLoaded ? (
+                    <motion.div
+                      key="brand-skeleton"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 0.25 }}
+                      className="flex items-center gap-3"
+                    >
+                      <div className="h-10 w-10 shrink-0 animate-pulse rounded-lg bg-gradient-to-b from-[#F9B000]/20 to-[#F07D00]/20" />
+                    </motion.div>
+                  ) : (
+                    <motion.div
+                      key="brand-content"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ duration: 0.4, ease: "easeOut" }}
+                    >
+                      {resolvedBrand || <DefaultBrand expanded={actualExpanded} />}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               )}
             </div>
           </SidebarHeader>
@@ -151,13 +190,66 @@ export const SideBar = React.forwardRef<HTMLElement, SidebarProps>(
           <SidebarMenu expanded={actualExpanded}>
             {children || (
               <nav className="flex h-full flex-col justify-center space-y-1 px-2">
-                {menuItems.map((item) => (
-                  <SidebarMenuItem
-                    key={item.id}
-                    item={item}
-                    expanded={actualExpanded}
-                  />
-                ))}
+                {skipAnimation.current ? (
+                  <div className="space-y-1">
+                    {menuItems.map((item) => (
+                      <SidebarMenuItem key={item.id} item={item} expanded={actualExpanded} />
+                    ))}
+                  </div>
+                ) : (
+                  <AnimatePresence mode="wait">
+                    {!isLoaded ? (
+                      <motion.div
+                        key="menu-skeleton"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.25 }}
+                        className="space-y-3 px-2"
+                      >
+                        {menuItems.map((_, i) => (
+                          <motion.div
+                            key={i}
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ duration: 0.3, delay: i * 0.08 }}
+                          >
+                            <Skeleton className="h-8 w-8 rounded-md" />
+                          </motion.div>
+                        ))}
+                      </motion.div>
+                    ) : (
+                      <motion.div
+                        key="menu-content"
+                        initial="hidden"
+                        animate="show"
+                        variants={{
+                          hidden: {},
+                          show: {
+                            transition: {
+                              staggerChildren: 0.06,
+                              delayChildren: 0.05,
+                            },
+                          },
+                        }}
+                        className="space-y-1"
+                      >
+                        {menuItems.map((item) => (
+                          <motion.div
+                            key={item.id}
+                            variants={{
+                              hidden: { opacity: 0, x: -8 },
+                              show: { opacity: 1, x: 0 },
+                            }}
+                            transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+                          >
+                            <SidebarMenuItem item={item} expanded={actualExpanded} />
+                          </motion.div>
+                        ))}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                )}
               </nav>
             )}
           </SidebarMenu>
@@ -165,7 +257,34 @@ export const SideBar = React.forwardRef<HTMLElement, SidebarProps>(
           {/* Footer Area */}
           {resolvedFooter && (
             <SidebarFooter expanded={actualExpanded}>
-              {resolvedFooter}
+              {skipAnimation.current ? (
+                <div className="w-full">{resolvedFooter}</div>
+              ) : (
+                <AnimatePresence mode="wait">
+                  {!isLoaded ? (
+                    <motion.div
+                      key="footer-skeleton"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 0.25 }}
+                      className="w-full px-2"
+                    >
+                      <Skeleton className="h-4 w-16 rounded" />
+                    </motion.div>
+                  ) : (
+                    <motion.div
+                      key="footer-content"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ duration: 0.4, ease: "easeOut", delay: 0.15 }}
+                      className="w-full"
+                    >
+                      {resolvedFooter}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              )}
             </SidebarFooter>
           )}
         </motion.aside>

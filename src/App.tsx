@@ -4,6 +4,7 @@ import { SidebarLayout, DashboardLayout } from "@/components/shared";
 import { Providers } from "@/providers";
 import Page from "@/app/page";
 import PymesPage from "@/app/pymes/page";
+import LabPage from "@/app/lab/page";
 import DashboardPage from "@/app/dashboard/page";
 import sidebarConfig from "@/config/sidebar.config";
 
@@ -32,7 +33,7 @@ function App() {
     );
   }
 
-  const CurrentPage = pathname === "/pymes" ? PymesPage : Page;
+  const CurrentPage = pathname === "/pymes" ? PymesPage : pathname === "/lab" ? LabPage : Page;
 
   return (
     <div className="antialiased">

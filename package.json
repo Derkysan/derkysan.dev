@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
+  "engines": {
+    "node": "^24.22.1 || ^22.23.4"
+  },
   "scripts": {
     "dev": "concurrently -k \"npm:dev:web\" \"npm:dev:api\"",
     "dev:web": "vite",
@@ -52,8 +55,9 @@
     "vite": "^7.3.1"
   },
   "overrides": {
-    "axios": "^1.12.0",
+    "axios": "^1.15.0",
     "immutable": "^4.3.7",
+    "qs": "^6.16.1",
     "brace-expansion": "^2.0.2",
     "glob": {
       "brace-expansion": "^2.0.2"
